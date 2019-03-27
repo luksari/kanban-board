@@ -1,4 +1,4 @@
-package com.example.kanban_board
+package com.mvvm.kanban_board
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle

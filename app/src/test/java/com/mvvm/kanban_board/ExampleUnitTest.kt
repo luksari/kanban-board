@@ -1,4 +1,4 @@
-package com.example.kanban_board
+package com.mvvm.kanban_board
 
 import org.junit.Test
 

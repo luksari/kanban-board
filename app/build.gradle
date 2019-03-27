@@ -9,7 +9,7 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.kanban_board"
+        applicationId "com.mvvm.kanban_board"
         minSdkVersion 15
         targetSdkVersion 28
         versionCode 1
