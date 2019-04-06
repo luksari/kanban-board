@@ -1,0 +1,51 @@
+{
+  "boards": [
+    {
+      "id_b": 1,
+      "name": "Mock board",
+      "history": [
+        {"id_h": 0, "content": "Łukasz **CREATED** card **Wake & Bake**"},
+        {"id_h": 1, "content": "Justyna **CREATED** card **Uprawianie sportu bo to fajne XD**"},
+      ],
+      "members": [
+        // id_m == id_u // ID of member is equal to ID of user
+        { "id_m": 0, "name": "Justyna" },
+        { "id_m": 1, "name": "Łukasz" },
+        { "id_m": 2, "name": "Artur" },
+        { "id_m": 3, "name": "Michał" },
+      ],
+      "categories": [
+        { "id_cat": 0,
+          "name": "TODO",
+          "cards": [
+            {"id_c": 0, "name": "Make a cake", "description": "We have to **make a cake**", deadline: "02-04-2137", owners: [{"id_m": 0, "name": "Justyna"}]},
+            {"id_c": 1, "name": "Wake & Bake", "description": "We have to **wake & bake 420**", deadline: "20-04-2420", owners: [{"id_m": 1, "name": "Łukasz"}]},
+            {"id_c": 2, "name": "Wake & Bake", "description": "We have to **wake & bake 420**", deadline: "20-04-2420", owners: [{"id_m": 1, "name": "Artur"}]},
+            {"id_c": 3, "name": "Wake & Bake", "description": "We have to **wake & bake 420**", deadline: "20-04-2420", owners: [{"id_m": 1, "name": "Michał"}]},
+          ],
+          // End category of id 0
+        },
+        { "id_cat": 1,
+          "name": "Development",
+          "cards": [
+            {"id_c": 0, "name": "Make a cake", "description": "We have to **make a cake**", deadline: "02-04-2137", owners: [{"id_m": 0, "name": "Justyna"}]},
+            {"id_c": 1, "name": "Wake & Bake", "description": "We have to **wake & bake 420**", deadline: "20-04-2420", owners: [{"id_m": 1, "name": "Łukasz"}]},
+            {"id_c": 2, "name": "Wake & Bake", "description": "We have to **wake & bake 420**", deadline: "20-04-2420", owners: [{"id_m": 1, "name": "Artur"}]},
+            {"id_c": 3, "name": "Wake & Bake", "description": "We have to **wake & bake 420**", deadline: "20-04-2420", owners: [{"id_m": 1, "name": "Michał"}]},
+          ],
+          // End category of id 1
+        },
+        { "id_cat": 2,
+          "name": "Done",
+          "cards": [
+            {"id_c": 0, "name": "Make a cake", "description": "We have to **make a cake**", deadline: "02-04-2137", owners: [{"id_m": 0, "name": "Justyna"}]},
+            {"id_c": 1, "name": "Wake & Bake", "description": "We have to **wake & bake 420**", deadline: "20-04-2420", owners: [{"id_m": 1, "name": "Łukasz"}]},
+            {"id_c": 2, "name": "Wake & Bake", "description": "We have to **wake & bake 420**", deadline: "20-04-2420", owners: [{"id_m": 1, "name": "Artur"}]},
+            {"id_c": 3, "name": "Wake & Bake", "description": "We have to **wake & bake 420**", deadline: "20-04-2420", owners: [{"id_m": 1, "name": "Michał"}]},
+          ],
+          // End category of id 1
+        }
+      ]
+    }
+  ]
+}
