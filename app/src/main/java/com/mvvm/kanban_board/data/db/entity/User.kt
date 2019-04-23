@@ -10,3 +10,4 @@ data class User(
 	val password: String? = null,
 	val name: String? = null //name need to be unique
 )
+

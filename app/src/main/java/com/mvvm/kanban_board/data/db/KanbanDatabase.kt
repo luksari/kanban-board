@@ -4,17 +4,20 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.mvvm.kanban_board.data.db.Converte.Converters
 import com.mvvm.kanban_board.data.db.entity.Board
 import com.mvvm.kanban_board.data.db.entity.BoardsResponse
-import com.mvvm.kanban_board.data.db.entity.User
 import com.mvvm.kanban_board.data.db.entity.UsersResponse
+import com.mvvm.kanban_board.data.db.entity.User
 
 @Database(
     entities = [User::class, Board::class],
     version = 1
 )
+@TypeConverters(Converters::class)
 abstract class KanbanDatabase : RoomDatabase(){
-    abstract fun KanbanDao(): KanbanDao
+    abstract fun kanbanDao(): KanbanDao
 
     companion object {
         @Volatile private var instance: KanbanDatabase? = null
@@ -27,7 +30,7 @@ abstract class KanbanDatabase : RoomDatabase(){
                 ?: buildDatabase(context).also { instance = it }
         }
 
-        private fun buildDatabase(context: Context) =
+         fun buildDatabase(context: Context) =
             Room.databaseBuilder(context.applicationContext,
                 KanbanDatabase::class.java, "kanban.db")
                 .build()

@@ -1,5 +1,6 @@
 package com.mvvm.kanban_board.data.db.entity
 
+import androidx.room.Embedded
 import androidx.room.PrimaryKey
 
 data class Card(
