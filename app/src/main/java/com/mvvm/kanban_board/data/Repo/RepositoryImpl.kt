@@ -13,8 +13,8 @@ class RepositoryImpl(
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun test(){
-        Log.d("BAZA", "repo is INITIALIZED")
+    override fun checkRepoInjection(){
+        Log.d("REPO", "repo is already initialized")
     }
     init{
         //check if the user is logged -> local db

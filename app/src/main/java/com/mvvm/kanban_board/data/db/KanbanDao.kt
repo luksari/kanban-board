@@ -17,7 +17,7 @@ interface KanbanDao {
     fun getUserByID(id: String): LiveData<User>
 
 
-    //for testing
+    //for testing without LiveData
     @Query("select * from users where name = :name ")
     fun getUserByName(name: String): User
 

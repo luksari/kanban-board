@@ -48,10 +48,6 @@ dependencies {
     // or Koin for Android Architecture ViewModel
     implementation 'org.koin:koin-android-viewmodel:2.0.0-rc-1'
 
-//    // Kodein
-//    implementation "org.kodein.di:kodein-di-generic-jvm:5.2.0"
-//    implementation "org.kodein.di:kodein-di-framework-android-x:5.2.0"
-
 
     // Retrofit2 for Rest API communication
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'

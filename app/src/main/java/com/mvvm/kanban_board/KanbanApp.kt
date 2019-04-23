@@ -6,17 +6,13 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
 
-
-
 class KanbanApp: Application()
 {
         override fun onCreate() {
         super.onCreate()
 
         startKoin {
-            // declare used Android context
             androidContext(this@KanbanApp)
-            // declare modules
             modules(appModule)
         }
 

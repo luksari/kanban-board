@@ -5,6 +5,6 @@ import com.mvvm.kanban_board.data.db.entity.User
 
 interface Repository {
     suspend fun getUserByName(): LiveData<User>
-    fun test()
+    fun checkRepoInjection()
 
 }

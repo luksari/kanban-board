@@ -1,6 +1,5 @@
 package com.mvvm.kanban_board.data.db.Converte
 
-import android.util.Log
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -8,8 +7,6 @@ import com.mvvm.kanban_board.data.db.entity.Category
 import com.mvvm.kanban_board.data.db.entity.History
 import com.mvvm.kanban_board.data.db.entity.User
 import java.util.*
-
-
 
 
 class Converters {
