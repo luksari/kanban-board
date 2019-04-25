@@ -3,6 +3,7 @@ package com.mvvm.kanban_board.data.db.Converte
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.mvvm.kanban_board.data.db.entity.Card
 import com.mvvm.kanban_board.data.db.entity.Category
 import com.mvvm.kanban_board.data.db.entity.History
 import com.mvvm.kanban_board.data.db.entity.User

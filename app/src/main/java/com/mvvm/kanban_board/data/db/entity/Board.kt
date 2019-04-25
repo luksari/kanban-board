@@ -15,5 +15,5 @@ data class Board(
 	val history: List<History>,
 	val categories: List<Category>,
     @PrimaryKey(autoGenerate = true)
-	val idB: Int
+	val idB: Int? = null
 )
