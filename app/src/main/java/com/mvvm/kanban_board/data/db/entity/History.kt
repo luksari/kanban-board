@@ -4,6 +4,6 @@ import androidx.room.PrimaryKey
 
 data class History(
 	@PrimaryKey(autoGenerate = true)
-	val idH: Int? = null,
+	val idH: Long,
 	val content: String? = null
 )

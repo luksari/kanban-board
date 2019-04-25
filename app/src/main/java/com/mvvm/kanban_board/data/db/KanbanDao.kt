@@ -29,6 +29,9 @@ interface KanbanDao {
     @Query("select * from users where name = :name ")
     fun getUserByName(name: String): User
 
+    @Query("select * from users")
+    fun getUsers(): Array<User>
+
     @Query("select * from boards where name = :name ")
     fun getBoardByName(name: String): Board
 

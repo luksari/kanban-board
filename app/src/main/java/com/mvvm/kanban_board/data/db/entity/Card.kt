@@ -9,5 +9,5 @@ data class Card(
 	val owners: List<User?>? = null,
 	val deadline: String? = null,
 	@PrimaryKey(autoGenerate = true)
-	val idC: Int? = null
+	val idC: Long
 )

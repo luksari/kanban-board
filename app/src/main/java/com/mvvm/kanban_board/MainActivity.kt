@@ -19,19 +19,9 @@ class MainActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //temporary loading from json here with context
         myRepo.initializeFakeData(this.applicationContext)
 
-
-//
-//        try {
-//            val inputStreamBoards: InputStream = assets.open("data_boards.json")
-//            val inputStringBoards = inputStreamBoards.bufferedReader().use{it.readText()}
-//            var board = Gson().fromJson(inputStringBoards, BoardsResponse::class.java)
-//            for (b in board.boards!!) {
-//                Log.d("BAZA", b?.name)
-//            }
-//        } catch (e:Exception){
-//            Log.d("BAZA",e.message)
-//        }
     }
 }

@@ -19,8 +19,8 @@ import java.nio.file.Paths
 
 class RepositoryImpl(
     private val kanbanDao: KanbanDao
-
 ) :Repository {
+
 
 
     override suspend fun getUserByName(): LiveData<User> {
@@ -29,44 +29,41 @@ class RepositoryImpl(
 
 
     init {
-        //val inputStringBoards = inputStreamBoards.bufferedReader().use{it.readText()}
-        //Log.d("BAZA", inputStringBoards)
-        //initializeBoardsFromJSON()
-    }
-
-        //  val User = Gson().fromJson(, Article::class.java)
         //check if the user is logged in vm -> local db
         //sign in/sign up -> rest api
-        // }
-  override fun initializeFakeData(context: Context){
-            initializeBoardsFromJSON(context)
-        }
+    }
 
-//    fun initializeUsersFromJSON() {
-//        try {
-//            val inputStreamUsers: InputStream = appContext.resources.assets.open("data_users.json")
-//
-//            //val inputStreamUsers: InputStream = appContext.assets.open("data_users.json")
-//            val inputStringUsers = inputStreamUsers.bufferedReader().use { it.readText() }
-//            var users = Gson().fromJson(inputStringUsers, UsersResponse::class.java)
-//            for (u in users.users!!) {
-//                Log.d("BAZA", u?.name)
-//            }
-//        }catch (e:Exception){ }
-//        }
-//
-//
-    fun initializeBoardsFromJSON(context: Context){
-        try {
+
+  override fun initializeFakeData(context: Context){
+      GlobalScope.launch(Dispatchers.IO) {
+          with(context){
+              val usersResponse = initializeUsersFromJSON(this)
+              val boardsResponse = initializeBoardsFromJSON(this)
+
+              usersResponse?.users?.forEach{ it?.let{ user -> kanbanDao.upsertUser(user) } }
+              boardsResponse?.boards?.forEach{ it?.let{ board -> kanbanDao.upsertBoard(board)} }
+          }
+         // Log.d("BAZA getBoard", kanbanDao.getBoardByName("Mock board").toString())
+          Log.d("BAZA getUsers", kanbanDao.getUserByName("Justyna").toString())
+
+      }
+
+   }
+
+    fun initializeUsersFromJSON(context: Context):UsersResponse? {
+        return try {
+            val inputStreamUsers: InputStream = context.assets.open("data_users.json")
+            val inputStringUsers = inputStreamUsers.bufferedReader().use { it.readText() }
+            return Gson().fromJson(inputStringUsers, UsersResponse::class.java)
+        } catch (e: Exception) {null}
+    }
+
+    fun initializeBoardsFromJSON(context: Context): BoardsResponse?{
+        return try {
             val inputStreamBoards: InputStream =  context.assets.open("data_boards.json")
             val inputStringBoards = inputStreamBoards.bufferedReader().use{it.readText()}
-            var board = Gson().fromJson(inputStringBoards, BoardsResponse::class.java)
-            for (b in board.boards!!) {
-                Log.d("BAZA", b?.name)
-            }
-        } catch (e:Exception){
-            Log.d("BAZA",e.message)
-        }
+            return Gson().fromJson(inputStringBoards, BoardsResponse::class.java)
+        } catch (e:Exception){null}
     }
 
 }

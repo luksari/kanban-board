@@ -6,6 +6,6 @@ import androidx.room.PrimaryKey
 data class Category(
 	val cards: List<Card?>? = null,
 	@PrimaryKey(autoGenerate = true)
-	val idCat: Int? = null,
+	val idCat: Long,
 	val name: String? = null
 )
