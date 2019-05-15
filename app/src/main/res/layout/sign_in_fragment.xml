@@ -4,11 +4,119 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context=".view.SignIn.SignInFragment">
+    <data>
 
-    <TextView
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Hello"/>
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/colorAccent">
 
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineVerTop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.15"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineHorTop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.10"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineHorBottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_percent="0.9"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:orientation="horizontal"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintWidth_percent="0.7"
+                app:layout_constraintStart_toEndOf="@id/guidelineVerTop"
+                app:layout_constraintTop_toBottomOf="@id/guidelineHorTop">
+            <ImageView
+                    android:id="@+id/logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    app:layout_constraintHeight_percent="0.3"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:src="@mipmap/kanban"/>
+
+            <TextView
+                    android:id="@+id/register_description"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/logo"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/login_title"
+                    android:textColor="@color/colorSecondaryLight"
+                    android:layout_marginTop="25dp"/>
+            <EditText
+                    android:id="@+id/loginEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/register_description"
+                    android:hint="@string/login_hint"
+                    android:background="@drawable/top_rounded_edittext"
+                    android:layout_marginTop="15dp"
+                    android:padding="10dp"/>
+            <EditText
+                    android:id="@+id/passwordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/loginEditText"
+                    android:hint="@string/password_hint"
+                    android:background="@drawable/top_rounded_edittext"
+                    android:layout_marginTop="15dp"
+                    android:padding="10dp"/>
+            <TextView
+                    android:id="@+id/register_go_to_sign_in"
+                    app:layout_constraintTop_toBottomOf="@id/passwordEditText"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:textColor="@color/colorSecondaryLight"
+                    android:layout_marginTop="25dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:text="@string/go_to_sign_up_text"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintWidth_percent="0.7"
+                app:layout_constraintStart_toEndOf="@id/guidelineVerTop"
+                app:layout_constraintBottom_toTopOf="@id/guidelineHorBottom">
+
+            <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sign_in_button_text"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="@color/colorAccent"
+                    android:background="@drawable/rounded_button"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

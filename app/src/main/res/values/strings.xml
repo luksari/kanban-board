@@ -4,8 +4,11 @@
     <string name="register_title">Please set your login and password for <b>KANBAN</b>.</string>
     <string name="login_hint">login...</string>
     <string name="password_hint">password...</string>
-    <string name="sign_up_button_text">Join <b>kanban</b></string>
     <string name="go_to_sign_in_text"><b><u>Already have an account?</u></b></string>
+    <string name="sign_up_button_text">Join <b>kanban</b></string>
 
-
+    //log in
+    <string name="login_title">Please enter your login and password for <b>KANBAN</b>.</string>
+    <string name="go_to_sign_up_text"><b><u>Do you want to create an account?</u></b></string>
+    <string name="sign_in_button_text">Sign in to <b>kanban</b></string>
 </resources>
