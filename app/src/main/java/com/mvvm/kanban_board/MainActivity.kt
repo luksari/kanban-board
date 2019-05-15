@@ -3,6 +3,7 @@ package com.mvvm.kanban_board
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import com.google.gson.Gson
 import com.mvvm.kanban_board.data.Repo.Repository
 import com.mvvm.kanban_board.data.db.entity.Board
@@ -21,7 +22,9 @@ class MainActivity : AppCompatActivity(){
         setContentView(R.layout.activity_main)
 
         //temporary loading from json here with context
-        myRepo.initializeFakeData(this.applicationContext)
+       // myRepo.initializeFakeData(this.applicationContext)
 
     }
+
+
 }
