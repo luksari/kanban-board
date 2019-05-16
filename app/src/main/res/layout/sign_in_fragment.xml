@@ -59,7 +59,7 @@
                     android:src="@mipmap/kanban"/>
 
             <TextView
-                    android:id="@+id/register_description"
+                    android:id="@+id/login_description"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/logo"
                     android:layout_height="wrap_content"
