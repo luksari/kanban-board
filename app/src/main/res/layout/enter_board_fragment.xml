@@ -79,7 +79,7 @@
                     android:layout_marginTop="15dp"
                     android:padding="10dp"/>
             <TextView
-                    android:id="@+id/register_go_to_sign_in"
+                    android:id="@+id/go_to_create_board"
                     app:layout_constraintTop_toBottomOf="@id/codeEditText"
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_height="wrap_content"
@@ -101,6 +101,7 @@
                 app:layout_constraintBottom_toTopOf="@id/guidelineHorBottom">
 
             <Button
+                    android:id="@+id/enter_board_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/enter_board_button_text"

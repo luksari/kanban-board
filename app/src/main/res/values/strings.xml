@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">kanban-board</string>
 
+
+    //register view strings
     <string name="login_hint">login...</string>
     <string name="password_hint">password...</string>
-    //register view strings
     <string name="register_title">Please set your login and password for <b>KANBAN</b>.</string>
     <string name="go_to_sign_in_text"><b><u>Already have an account?</u></b></string>
     <string name="sign_up_button_text">Join <b>kanban</b></string>
@@ -13,8 +14,12 @@
     <string name="sign_in_button_text">Sign in to <b>kanban</b></string>
 
     //board enter
-    <string name="enter_board_title">Enter code for your board that you have been invited.</string>
     <string name="board_code_hint">board code...</string>
+    <string name="enter_board_title">Enter code for your board that you have been invited.</string>
     <string name="go_to_create_board_text"><b><u>Do you want to create your own board?</u></b></string>
     <string name="enter_board_button_text">Enter</string>
+    //board crete
+    <string name="create_board_title">Set code for your board that you want to create!</string>
+    <string name="go_to_enter_board_text"><b><u>Do you want to join existing board?</u></b></string>
+    <string name="create_board_button_text">create</string>
 </resources>
