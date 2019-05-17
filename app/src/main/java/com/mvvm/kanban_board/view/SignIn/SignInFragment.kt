@@ -1,6 +1,5 @@
 package com.mvvm.kanban_board.view.SignIn
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.mvvm.kanban_board.R
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class SignInFragment : Fragment() {
 
@@ -15,7 +15,7 @@ class SignInFragment : Fragment() {
         fun newInstance() = SignInFragment()
     }
 
-    private lateinit var viewModel: SignInViewModel
+    private val viewModel: SignInViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,8 +26,6 @@ class SignInFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(SignInViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
 }

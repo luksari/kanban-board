@@ -1,6 +1,5 @@
 package com.mvvm.kanban_board.view.EnterBoard
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -26,8 +25,6 @@ class EnterBoardFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(EnterBoardViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
 }

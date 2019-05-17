@@ -1,6 +1,5 @@
 package com.mvvm.kanban_board.view.DrawerMenu.YourBoards
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.mvvm.kanban_board.R
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class YourBoardsFragment : Fragment() {
 
@@ -15,7 +15,7 @@ class YourBoardsFragment : Fragment() {
         fun newInstance() = YourBoardsFragment()
     }
 
-    private lateinit var viewModel: YourBoardsViewModel
+    private val viewModel: YourBoardsViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,8 +26,6 @@ class YourBoardsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(YourBoardsViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
 }

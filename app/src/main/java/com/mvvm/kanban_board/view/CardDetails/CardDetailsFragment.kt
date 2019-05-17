@@ -5,9 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProviders
-
 import com.mvvm.kanban_board.R
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class CardDetailsFragment : Fragment() {
 
@@ -15,7 +14,7 @@ class CardDetailsFragment : Fragment() {
         fun newInstance() = CardDetailsFragment()
     }
 
-    private lateinit var viewModel: CardDetailsViewModel
+    private val viewModel: CardDetailsViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,8 +25,6 @@ class CardDetailsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(CardDetailsViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
 }

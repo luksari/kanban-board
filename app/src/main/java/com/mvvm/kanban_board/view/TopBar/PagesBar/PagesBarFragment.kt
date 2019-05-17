@@ -1,13 +1,12 @@
 package com.mvvm.kanban_board.view.TopBar.PagesBar
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.mvvm.kanban_board.R
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class PagesBarFragment : Fragment() {
 
@@ -15,7 +14,7 @@ class PagesBarFragment : Fragment() {
         fun newInstance() = PagesBarFragment()
     }
 
-    private lateinit var viewModel: PagesBarViewModel
+    private val viewModel: PagesBarViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,8 +25,6 @@ class PagesBarFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(PagesBarViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
 }

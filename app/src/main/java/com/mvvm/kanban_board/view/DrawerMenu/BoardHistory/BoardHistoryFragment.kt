@@ -1,6 +1,5 @@
 package com.mvvm.kanban_board.view.DrawerMenu.BoardHistory
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.mvvm.kanban_board.R
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class BoardHistoryFragment : Fragment() {
 
@@ -15,7 +15,7 @@ class BoardHistoryFragment : Fragment() {
         fun newInstance() = BoardHistoryFragment()
     }
 
-    private lateinit var viewModel: BoardHistoryViewModel
+    private val viewModel: BoardHistoryViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,8 +26,6 @@ class BoardHistoryFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(BoardHistoryViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
 }
