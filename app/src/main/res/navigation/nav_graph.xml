@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
+            app:startDestination="@id/signUpFragment">
+
+    <fragment android:id="@+id/signUpFragment" android:name="com.mvvm.kanban_board.view.SignUp.SignUpFragment"
+              android:label="sign_up_fragment" tools:layout="@layout/sign_up_fragment">
+        <action android:id="@+id/action_signUpFragment_to_signInFragment" app:destination="@id/signInFragment"/>
+    </fragment>
+    <fragment android:id="@+id/signInFragment" android:name="com.mvvm.kanban_board.view.SignIn.SignInFragment"
+              android:label="sign_in_fragment" tools:layout="@layout/sign_in_fragment">
+        <action android:id="@+id/action_signInFragment_to_signUpFragment" app:destination="@id/signUpFragment"/>
+        <action android:id="@+id/action_signInFragment_to_enterBoardFragment" app:destination="@id/enterBoardFragment"/>
+    </fragment>
+    <fragment android:id="@+id/enterBoardFragment"
+              android:name="com.mvvm.kanban_board.view.EnterBoard.EnterBoardFragment"
+              android:label="enter_board_fragment" tools:layout="@layout/enter_board_fragment">
+        <action android:id="@+id/action_enterBoardFragment_to_createBoardFragment"
+                app:destination="@id/createBoardFragment"/>
+        <action android:id="@+id/action_enterBoardFragment_to_boardFragment" app:destination="@id/boardFragment"/>
+    </fragment>
+    <fragment android:id="@+id/createBoardFragment"
+              android:name="com.mvvm.kanban_board.view.CreateBoard.CreateBoardFragment"
+              android:label="create_board_fragment" tools:layout="@layout/create_board_fragment"/>
+    <fragment android:id="@+id/boardFragment" android:name="com.mvvm.kanban_board.view.Board.BoardFragment"
+              android:label="board_fragment" tools:layout="@layout/board_fragment">
+        <action android:id="@+id/action_boardFragment_to_cardDetailsFragment"
+                app:destination="@id/cardDetailsFragment"/>
+    </fragment>
+    <fragment android:id="@+id/cardDetailsFragment"
+              android:name="com.mvvm.kanban_board.view.CardDetails.CardDetailsFragment"
+              android:label="card_details_fragment" tools:layout="@layout/card_details_fragment">
+        <action android:id="@+id/action_cardDetailsFragment_to_boardFragment" app:destination="@id/boardFragment"/>
+    </fragment>
+</navigation>
