@@ -13,7 +13,8 @@ import com.mvvm.kanban_board.data.db.entity.User
 
 @Database(
     entities = [User::class, Board::class],
-    version = 1
+    version = 1,
+    exportSchema = false
 )
 @TypeConverters(Converters::class)
 abstract class KanbanDatabase : RoomDatabase(){

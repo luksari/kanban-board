@@ -38,29 +38,27 @@ dependencies {
     implementation 'androidx.fragment:fragment-ktx:1.0.0'
     // ViewModel for MVVM Pattern implementation
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0'
-
-
-
     // Koin for Android
     implementation 'org.koin:koin-android:2.0.0-rc-1'
     // or Koin for Lifecycle scoping
     implementation 'org.koin:koin-android-scope:2.0.0-rc-1'
     // or Koin for Android Architecture ViewModel
     implementation 'org.koin:koin-android-viewmodel:2.0.0-rc-1'
-
-
     // Retrofit2 for Rest API communication
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
-    // Moshi for parsing json
-    implementation("com.squareup.moshi:moshi-kotlin:1.8.0")
     // Coroutines for Background jobs
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1'
 
+    def nav_version = "2.1.0-alpha04"
+
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    // For Kotlin use navigation-fragment-ktx
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    // For Kotlin use navigation-ui-ktx
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0-beta01'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-beta01'
-
 
     // Room
     def room_version = "2.1.0-alpha06"
@@ -78,7 +76,5 @@ dependencies {
 
     //fix
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
-    implementation 'android.arch.navigation:navigation-fragment:1.0.0'
-    implementation 'android.arch.navigation:navigation-ui:1.0.0'
 
 }

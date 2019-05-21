@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.DrawerMenu.DrawerMenuFragment">
+        tools:context=".view.drawer_menu.DrawerMenuFragment">
 
     <TextView
             android:layout_width="match_parent"
