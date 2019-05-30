@@ -1,6 +1,9 @@
-import com.mvvm.kanban_board.data.Repo.Repository
-import com.mvvm.kanban_board.data.Repo.RepositoryImpl
+import com.mvvm.kanban_board.data.apiService.ApiUtils
+import com.mvvm.kanban_board.data.repo.Repository
+import com.mvvm.kanban_board.data.repo.RepositoryImpl
 import com.mvvm.kanban_board.data.db.KanbanDatabase
+import com.mvvm.kanban_board.data.networkDataSource.UserNetworkDataSource
+import com.mvvm.kanban_board.data.networkDataSource.UserNetworkDataSourceImpl
 import com.mvvm.kanban_board.view.board.BoardViewModel
 import com.mvvm.kanban_board.view.card_details.CardDetailsViewModel
 import com.mvvm.kanban_board.view.create_board.CreateBoardViewModel
@@ -23,7 +26,9 @@ import org.koin.dsl.module
 
 val appModule = module {
 
-    single { RepositoryImpl(get()) as Repository }
+    single {ApiUtils}
+    single { UserNetworkDataSourceImpl (get()) as UserNetworkDataSource}
+    single { RepositoryImpl(get(), get()) as Repository }
     single { KanbanDatabase.buildDatabase(androidApplication())}
     single { get<KanbanDatabase>().kanbanDao() }
 

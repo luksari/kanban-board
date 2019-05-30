@@ -1,26 +1,23 @@
-package com.mvvm.kanban_board.data.Repo
+package com.mvvm.kanban_board.data.repo
 
 import android.content.Context
-import android.content.res.AssetManager
-import android.content.res.Resources
 import android.util.Log
 import androidx.lifecycle.LiveData
 import com.google.gson.Gson
 import com.mvvm.kanban_board.data.db.KanbanDao
 import com.mvvm.kanban_board.data.db.entity.*
+import com.mvvm.kanban_board.data.db.response.UsersResponse
+import com.mvvm.kanban_board.data.networkDataSource.UserNetworkDataSource
 import kotlinx.coroutines.*
-import org.koin.android.ext.android.inject
-import java.io.BufferedReader
-import java.io.File
-import java.io.FileReader
 import java.io.InputStream
-import java.nio.charset.Charset
-import java.nio.file.Paths
 
 class RepositoryImpl(
-    private val kanbanDao: KanbanDao
+    private val kanbanDao: KanbanDao,
+    private val userNetworkDataSource: UserNetworkDataSource
 ) :Repository {
-
+    override suspend fun registerNewUser(password: String, name: String) {
+        userNetworkDataSource.registerUser(password, name)
+    }
 
 
     override suspend fun getUserByName(): LiveData<User> {
@@ -50,7 +47,7 @@ class RepositoryImpl(
 
    }
 
-    fun initializeUsersFromJSON(context: Context):UsersResponse? {
+    fun initializeUsersFromJSON(context: Context): UsersResponse? {
         return try {
             val inputStreamUsers: InputStream = context.assets.open("data_users.json")
             val inputStringUsers = inputStreamUsers.bufferedReader().use { it.readText() }

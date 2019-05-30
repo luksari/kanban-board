@@ -113,7 +113,8 @@
                     android:text="@string/sign_up_button_text"
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:textColor="@color/colorAccent"
-                    android:background="@drawable/rounded_button"/>
+                    android:background="@drawable/rounded_button"
+                    android:onClick="@{() -> viewModel.checkPostUser()}"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

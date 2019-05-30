@@ -7,8 +7,6 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.mvvm.kanban_board.data.db.Converte.Converters
 import com.mvvm.kanban_board.data.db.entity.Board
-import com.mvvm.kanban_board.data.db.entity.BoardsResponse
-import com.mvvm.kanban_board.data.db.entity.UsersResponse
 import com.mvvm.kanban_board.data.db.entity.User
 
 @Database(
