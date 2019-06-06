@@ -74,7 +74,8 @@
                     android:background="@drawable/top_rounded_edittext"
                     android:layout_marginTop="15dp"
                     android:padding="10dp"
-                    android:text="@={viewModel.username}"/>
+                    android:text="@={viewModel.username}"
+                    app:error="@{viewModel.errorUsername}"/>
             <EditText
                     android:id="@+id/passwordEditText"
                     android:layout_width="match_parent"
@@ -85,7 +86,8 @@
                     android:background="@drawable/top_rounded_edittext"
                     android:layout_marginTop="15dp"
                     android:padding="10dp"
-                    android:text="@={viewModel.password}"/>
+                    android:text="@={viewModel.password}"
+                    app:error="@{viewModel.errorPassword}"/>
             <TextView
                     android:id="@+id/go_to_sign_in"
                     app:layout_constraintTop_toBottomOf="@id/passwordEditText"

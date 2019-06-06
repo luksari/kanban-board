@@ -4,7 +4,6 @@ import android.util.Log
 import com.mvvm.kanban_board.data.apiService.ApiUtils
 import com.mvvm.kanban_board.data.apiService.request.UserRegister
 import com.mvvm.kanban_board.data.apiService.response.UserRegisterResponse
-import com.mvvm.kanban_board.data.db.entity.User
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -14,7 +13,7 @@ class UserNetworkDataSourceImpl (private val apiUtils: ApiUtils):UserNetworkData
     override suspend fun registerUser(name: String, password: String){
         apiUtils.apiService.postUser(UserRegister(username = name, password = password)).enqueue(object : Callback<UserRegisterResponse> {
             override fun onFailure(call: Call<UserRegisterResponse>, t: Throwable) {
-                Log.i("API", "failure" + t.message)
+                Log.i("API", "FAILED: " + t.message)
             }
 
             override fun onResponse(call: Call<UserRegisterResponse>, response: Response<UserRegisterResponse>) {
@@ -25,8 +24,7 @@ class UserNetworkDataSourceImpl (private val apiUtils: ApiUtils):UserNetworkData
                      Log.i("API", "not succesfull, message: " + response.errorBody().toString())
                 }
             }
-
-
+            
         })
     }
 

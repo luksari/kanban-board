@@ -22,13 +22,13 @@ class RepositoryImpl(
     }
 
     private fun hashPassword(password: String): String{
-        return ""
+
 
         var salt = BCrypt.gensalt(5)
         var hashed = BCrypt.hashpw(password, salt)
 
-
-
+       // Log.d("haslo", BCrypt.checkpw(password, hashed).toString())
+        return hashed
     }
 
 
