@@ -9,14 +9,26 @@ import com.mvvm.kanban_board.data.db.entity.*
 import com.mvvm.kanban_board.data.db.response.UsersResponse
 import com.mvvm.kanban_board.data.networkDataSource.UserNetworkDataSource
 import kotlinx.coroutines.*
+import org.mindrot.jbcrypt.BCrypt
 import java.io.InputStream
 
 class RepositoryImpl(
     private val kanbanDao: KanbanDao,
     private val userNetworkDataSource: UserNetworkDataSource
 ) :Repository {
-    override suspend fun registerNewUser(password: String, name: String) {
-        userNetworkDataSource.registerUser(password, name)
+    override suspend fun registerNewUser(name: String, password: String) {
+        var passwordHashed = hashPassword(password)
+        userNetworkDataSource.registerUser(name, passwordHashed)
+    }
+
+    private fun hashPassword(password: String): String{
+        return ""
+
+        var salt = BCrypt.gensalt(5)
+        var hashed = BCrypt.hashpw(password, salt)
+
+
+
     }
 
 

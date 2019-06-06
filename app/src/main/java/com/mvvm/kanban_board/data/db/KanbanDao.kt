@@ -14,7 +14,7 @@ interface KanbanDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun upsertUser(user: User)
 
-    @Query("select * from users where id = :id ")
+    @Query("select * from users where idU = :id ")
     fun getUserByID(id: String): LiveData<User>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

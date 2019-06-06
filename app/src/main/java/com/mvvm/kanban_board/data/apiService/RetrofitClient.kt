@@ -12,10 +12,13 @@ object RetrofitClient {
 
     var retrofit: Retrofit? = null
 
+
+
+
     fun getClient(baseUrl: String): Retrofit?{
         if(retrofit == null) {
-           // val interceptor = HttpLoggingInterceptor()
-           // interceptor.level = HttpLoggingInterceptor.Level.BODY
+            val loggingInterceptor = HttpLoggingInterceptor()
+            loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
             val client = OkHttpClient.Builder()
                .addInterceptor(Interceptor  { chain ->
@@ -29,9 +32,9 @@ object RetrofitClient {
 
                    return@Interceptor chain.proceed(request)
             })
-               //.addInterceptor(interceptor)
-               .connectTimeout(100, TimeUnit.SECONDS)
-               .readTimeout(100, TimeUnit.SECONDS)
+               .addInterceptor(loggingInterceptor)
+               .connectTimeout(200, TimeUnit.SECONDS)
+               .readTimeout(200, TimeUnit.SECONDS)
                .build()
 
             retrofit = Retrofit.Builder()
