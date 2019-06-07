@@ -8,9 +8,4 @@ interface Repository {
 
     //API
     suspend fun registerNewUser(name: String, password: String)
-
-
-    suspend fun getUserByName(): LiveData<User>
-    fun initializeFakeData(context: Context)
-
 }

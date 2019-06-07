@@ -118,7 +118,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:textColor="@color/colorAccent"
                     android:background="@drawable/rounded_button"
-                    android:onClick="@{() -> viewModel.registerNewUser()}"/>
+                    android:onClick="@{() -> viewModel.registerNewUser()}"
+                    android:enabled="@{viewModel.isValid}"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
