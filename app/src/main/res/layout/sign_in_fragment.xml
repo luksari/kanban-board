@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.10"
+                app:layout_constraintGuide_percent="@dimen/percent_sign_up_top_guide"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
 
@@ -33,7 +33,7 @@
                 android:id="@+id/guidelineHorBottom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintGuide_percent="0.9"
+                app:layout_constraintGuide_percent="@dimen/percent_sign_up_bottom_guide"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:orientation="horizontal"/>
@@ -61,7 +61,7 @@
                     android:layout_width="wrap_content"
                     android:text="@string/login_title"
                     android:textColor="@color/colorSecondaryLight"
-                    android:layout_marginTop="25dp"/>
+                    android:layout_marginTop="@dimen/marigin_sign_up_elements"/>
             <EditText
                     android:id="@+id/loginEditText"
                     android:layout_width="match_parent"
@@ -70,8 +70,8 @@
                     app:layout_constraintTop_toBottomOf="@id/login_description"
                     android:hint="@string/login_hint"
                     android:background="@drawable/top_rounded_edittext"
-                    android:layout_marginTop="15dp"
-                    android:padding="10dp"/>
+                    android:layout_marginTop="@dimen/marigin_sign_up_edittext"
+                    android:padding="@dimen/padding_sign_up_edittext" />
             <EditText
                     android:id="@+id/passwordEditText"
                     android:layout_width="match_parent"
@@ -80,8 +80,8 @@
                     app:layout_constraintTop_toBottomOf="@id/loginEditText"
                     android:hint="@string/password_hint"
                     android:background="@drawable/top_rounded_edittext"
-                    android:layout_marginTop="15dp"
-                    android:padding="10dp"/>
+                    android:layout_marginTop="@dimen/marigin_sign_up_edittext"
+                    android:padding="@dimen/padding_sign_up_edittext" />
             <TextView
                     android:id="@+id/go_to_sign_up"
                     app:layout_constraintTop_toBottomOf="@id/passwordEditText"
@@ -90,7 +90,7 @@
                     android:layout_width="match_parent"
                     android:gravity="center"
                     android:textColor="@color/colorSecondaryLight"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="@dimen/marigin_sign_up_elements"
                     android:clickable="true"
                     android:focusable="true"
                     android:text="@string/go_to_sign_up_text"/>
@@ -111,7 +111,8 @@
                     android:text="@string/sign_in_button_text"
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:textColor="@color/colorAccent"
-                    android:background="@drawable/rounded_button"/>
+                    android:background="@drawable/rounded_button"
+                    android:minHeight="@dimen/minHeight_sign_up_button"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

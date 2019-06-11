@@ -26,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.10"
+                app:layout_constraintGuide_percent="@dimen/percent_sign_up_top_guide"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
 
@@ -35,7 +35,7 @@
                 android:id="@+id/guidelineHorBottom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintGuide_percent="0.9"
+                app:layout_constraintGuide_percent="@dimen/percent_sign_up_bottom_guide"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:orientation="horizontal"/>
@@ -63,7 +63,7 @@
                     android:layout_width="wrap_content"
                     android:text="@string/register_title"
                     android:textColor="@color/colorSecondaryLight"
-                    android:layout_marginTop="25dp"/>
+                    android:layout_marginTop="@dimen/marigin_sign_up_elements"/>
             <EditText
                     android:id="@+id/loginEditText"
                     android:layout_width="match_parent"
@@ -72,8 +72,8 @@
                     app:layout_constraintTop_toBottomOf="@id/register_description"
                     android:hint="@string/login_hint"
                     android:background="@drawable/top_rounded_edittext"
-                    android:layout_marginTop="15dp"
-                    android:padding="10dp"
+                    android:layout_marginTop="@dimen/marigin_sign_up_edittext"
+                    android:padding="@dimen/padding_sign_up_edittext"
                     android:text="@={viewModel.username}"
                     app:error="@{viewModel.errorUsername}"/>
             <EditText
@@ -84,8 +84,8 @@
                     app:layout_constraintTop_toBottomOf="@id/loginEditText"
                     android:hint="@string/password_hint"
                     android:background="@drawable/top_rounded_edittext"
-                    android:layout_marginTop="15dp"
-                    android:padding="10dp"
+                    android:layout_marginTop="@dimen/marigin_sign_up_edittext"
+                    android:padding="@dimen/padding_sign_up_edittext"
                     android:text="@={viewModel.password}"
                     app:error="@{viewModel.errorPassword}"/>
             <TextView
@@ -96,7 +96,7 @@
                     android:layout_width="match_parent"
                     android:gravity="center"
                     android:textColor="@color/colorSecondaryLight"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="@dimen/marigin_sign_up_elements"
                     android:clickable="true"
                     android:focusable="true"
                     android:text="@string/go_to_sign_in_text"/>
@@ -118,9 +118,9 @@
                     android:layout_width="match_parent"
                     android:gravity="center"
                     android:textColor="@color/colorSecondaryLight"
-                    android:layout_marginTop="25dp"
-                    android:text="@{viewModel.requestMessage}"/>
-
+                    android:layout_marginTop="@dimen/marigin_sign_up_elements"
+                    android:text="succes!"/>
+            <!--android:text="@{viewModel.requestMessage}"-->
             <Button
                     android:id="@+id/sign_up_button"
                     android:layout_width="match_parent"
@@ -130,7 +130,8 @@
                     android:textColor="@color/colorAccent"
                     android:background="@drawable/rounded_button"
                     android:onClick="@{() -> viewModel.registerNewUser()}"
-                    android:enabled="@{viewModel.isValid}"/>
+                    android:enabled="@{viewModel.isValid}"
+                    android:minHeight="@dimen/minHeight_sign_up_button"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

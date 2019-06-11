@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--dimensions for portrait rotation for signu/in fragments -->
+<resources>
+    <dimen name="marigin_sign_up_elements">25dp</dimen>
+    <dimen name="padding_sign_up_edittext">10dp</dimen>
+    <dimen name="marigin_sign_up_edittext">15dp</dimen>
+    <dimen name="minHeight_sign_up_button">45dp</dimen>
+    <dimen name="percent_sign_up_bottom_guide">0.9</dimen>
+    <dimen name="percent_sign_up_top_guide">0.1</dimen>
+
+</resources>
