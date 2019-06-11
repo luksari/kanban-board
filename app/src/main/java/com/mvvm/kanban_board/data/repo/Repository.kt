@@ -7,5 +7,5 @@ import com.mvvm.kanban_board.data.db.entity.User
 interface Repository {
 
     //API
-    suspend fun registerNewUser(name: String, password: String)
+    suspend fun registerNewUser(name: String, password: String): String?
 }

@@ -16,17 +16,18 @@ class RepositoryImpl(
     private val kanbanDao: KanbanDao,
     private val userNetworkDataSource: UserNetworkDataSource
 ) :Repository {
-    override suspend fun registerNewUser(name: String, password: String) {
+    override suspend fun registerNewUser(name: String, password: String): String?{
         var passwordHashed = hashPassword(password)
-        userNetworkDataSource.registerUser(name, passwordHashed)
+        val message = userNetworkDataSource.registerUser(name, passwordHashed)
+        Log.d("D/OkHttp mes", message)
+        return message
+        //return userNetworkDataSource.request.value
+        //return userNetworkDataSource.registerUser(name, passwordHashed)
     }
 
     private fun hashPassword(password: String): String{
-
-
         var salt = BCrypt.gensalt(5)
         var hashed = BCrypt.hashpw(password, salt)
-
        // Log.d("haslo", BCrypt.checkpw(password, hashed).toString())
         return hashed
     }

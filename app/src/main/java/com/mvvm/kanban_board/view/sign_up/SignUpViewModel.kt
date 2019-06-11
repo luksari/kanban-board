@@ -3,24 +3,42 @@ package com.mvvm.kanban_board.view.sign_up
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModel
 import com.mvvm.kanban_board.data.repo.Repository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import com.mvvm.kanban_board.helpers.lazyDeferred
+import kotlinx.coroutines.*
 
 class SignUpViewModel(private val repository: Repository) : ViewModel() {
 
     fun registerNewUser(){
+//        val message : Deferred<String> = GlobalScope.async (Dispatchers.Main){
+//            repository.registerNewUser(username.value!!, password.value!!)
+//        }
 
-        GlobalScope.launch (Dispatchers.Main){
-            repository.registerNewUser(username.value!!, password.value!!)
+
+        GlobalScope.launch {
+//            _requestMessage.value  = withContext(Dispatchers.Default) {
+//                repository.registerNewUser(username.value!!, password.value!!)
+//            }
+           // _requestMessage.value =
+            withContext(Dispatchers.Main){
+               val request = repository.registerNewUser(username.value!!, password.value!!)
+                withContext(Dispatchers.Main) {
+                    _requestMessage.value = request
+                    Log.d("D/OkHttp mes", _requestMessage.value)
+                }
+            }
         }
+
+
     }
 
      val password: MutableLiveData<String> = MutableLiveData()
      val username: MutableLiveData<String> = MutableLiveData()
 
+    private val _requestMessage: MutableLiveData<String> = MutableLiveData()
+    val requestMessage: LiveData<String>
+        get() = _requestMessage
 
     private val _errorPassword: MutableLiveData<String> = MutableLiveData()
     val errorPassword: LiveData<String>
@@ -50,7 +68,7 @@ class SignUpViewModel(private val repository: Repository) : ViewModel() {
         }else{
             _isValid.value = false
             _errorPassword.let{
-                if (!PASSWORD_REGEX_CHAR_NUM.matches(_password)){
+                if (_password.length<8){
                     it.value = "Password must be at least 8 characters long"
                 }
                 else if (!PASSWORD_REGEX_LOWERCASE.matches(_password)){
@@ -64,6 +82,9 @@ class SignUpViewModel(private val repository: Repository) : ViewModel() {
                 }
                 else if (!PASSWORD_REGEX_SPEC_CHAR.matches(_password)){
                     it.value = "Password must contain at least one special character (@\$!%*?&.)"
+                }
+                else{
+                    it.value = "Password can contain only these special characters (@\$!%*?&.)"
                 }
             }
         }
@@ -83,7 +104,7 @@ class SignUpViewModel(private val repository: Repository) : ViewModel() {
             _errorUsername.let{
                 if(!USERNAME_REGEX_CHAR.matches(_username)) {
                     it.value = "Username must contain only letters, numbers or (@.+-_) characters"
-                } else {
+                } else if (_username.length !in 8..20){
                     it.value = "Username must contain 8-20 characters"
                 }
             }
@@ -91,7 +112,9 @@ class SignUpViewModel(private val repository: Repository) : ViewModel() {
     }
 
     init{
+        Log.d("viewmodel", "INIT")
         _isValid.value = false
+        _requestMessage.value = ""
         username.observeForever { validateUsername(it) }
         password.observeForever { validatePassword(it) }
     }

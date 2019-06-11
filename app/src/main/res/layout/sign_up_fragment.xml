@@ -110,6 +110,17 @@
                 app:layout_constraintStart_toEndOf="@id/guidelineVerTop"
                 app:layout_constraintBottom_toTopOf="@id/guidelineHorBottom">
 
+            <TextView
+                    android:id="@+id/register_message"
+                    app:layout_constraintBottom_toTopOf="@id/sign_up_button"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:textColor="@color/colorSecondaryLight"
+                    android:layout_marginTop="25dp"
+                    android:text="@{viewModel.requestMessage}"/>
+
             <Button
                     android:id="@+id/sign_up_button"
                     android:layout_width="match_parent"
