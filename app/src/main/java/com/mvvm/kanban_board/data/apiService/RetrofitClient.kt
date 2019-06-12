@@ -1,6 +1,5 @@
 package com.mvvm.kanban_board.data.apiService
 
-import com.mvvm.kanban_board.helpers.ConnectivityInterceptor
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -13,29 +12,27 @@ object RetrofitClient {
     var retrofit: Retrofit? = null
 
 
-
-
-    fun getClient(): Retrofit?{
-        if(retrofit == null) {
+    fun getClient(): Retrofit? {
+        if (retrofit == null) {
             val loggingInterceptor = HttpLoggingInterceptor()
             loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
             val client = OkHttpClient.Builder()
-               .addInterceptor(Interceptor  { chain ->
+                .addInterceptor(Interceptor { chain ->
                     //add headers??
-                   val original = chain.request()
-                   val request = original
-                       .newBuilder()
-                       .header("Content-Type", "application/json")
-                       .method(original.method(), original.body())
-                       .build()
+                    val original = chain.request()
+                    val request = original
+                        .newBuilder()
+                        .header("Content-Type", "application/json")
+                        .method(original.method(), original.body())
+                        .build()
 
-                   return@Interceptor chain.proceed(request)
-            })
-               .addInterceptor(loggingInterceptor)
-               .connectTimeout(200, TimeUnit.SECONDS)
-               .readTimeout(200, TimeUnit.SECONDS)
-               .build()
+                    return@Interceptor chain.proceed(request)
+                })
+                .addInterceptor(loggingInterceptor)
+                .connectTimeout(200, TimeUnit.SECONDS)
+                .readTimeout(200, TimeUnit.SECONDS)
+                .build()
 
             retrofit = Retrofit.Builder()
                 .baseUrl(ApiUtils.BASE_URL)

@@ -119,8 +119,9 @@
                     android:gravity="center"
                     android:textColor="@color/colorSecondaryLight"
                     android:layout_marginTop="@dimen/marigin_sign_up_elements"
-                    android:text="succes!"/>
-            <!--android:text="@{viewModel.requestMessage}"-->
+                    android:text="@{viewModel.requestMessage}" />
+
+
             <Button
                     android:id="@+id/sign_up_button"
                     android:layout_width="match_parent"
