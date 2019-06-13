@@ -10,7 +10,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.mvvm.kanban_board"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -37,7 +37,7 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.0.2'
     implementation 'androidx.fragment:fragment-ktx:1.0.0'
     // ViewModel for MVVM Pattern implementation
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0'
     // Koin for Android
     implementation 'org.koin:koin-android:2.0.0-rc-1'
     // or Koin for Lifecycle scoping
@@ -52,6 +52,8 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.12.1'
     // Coroutines for Background jobs
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1'
+    //animations
+    implementation "com.airbnb.android:lottie:3.0.0"
 
     def nav_version = "2.1.0-alpha04"
 
