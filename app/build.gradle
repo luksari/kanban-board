@@ -83,8 +83,6 @@ dependencies {
     //fix
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
-    // Bcrypt for hashing password library
-    implementation group: 'org.mindrot', name: 'jbcrypt', version: '0.4'
 
 
 }

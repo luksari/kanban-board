@@ -11,14 +11,6 @@ class RepositoryImpl(
     private val userNetworkDataSource: UserNetworkDataSource
 ) : Repository {
     override suspend fun registerNewUser(name: String, password: String): String? {
-        var passwordHashed = hashPassword(password)
-        return userNetworkDataSource.registerUser(name, passwordHashed)
+        return userNetworkDataSource.registerUser(name, password)
     }
-
-    private fun hashPassword(password: String): String {
-        var salt = BCrypt.gensalt(5)
-        return BCrypt.hashpw(password, salt)
-    }
-
-
 }
