@@ -12,4 +12,8 @@ class RepositoryImpl(
     override suspend fun registerNewUser(name: String, password: String): String? {
         return userNetworkDataSource.registerUser(name, password)
     }
+
+    override suspend fun loginUser(name: String, password: String): String? {
+        return userNetworkDataSource.loginUser(name, password)
+    }
 }

@@ -1,7 +1,8 @@
 package com.mvvm.kanban_board.data.networkDataSource
 
 import com.mvvm.kanban_board.data.apiService.ApiUtils
-import com.mvvm.kanban_board.data.apiService.request.UserRegister
+import com.mvvm.kanban_board.data.apiService.request.UserRequest
+import com.mvvm.kanban_board.session.SessionManager
 
 import org.json.JSONObject
 
@@ -12,7 +13,7 @@ class UserNetworkDataSourceImpl(private val apiUtils: ApiUtils) : UserNetworkDat
     override suspend fun registerUser(name: String, password: String): String {
         var message: String
         try {
-            apiUtils.apiService.postUserAsync(UserRegister(username = name, password = password)).let {
+            apiUtils.apiService.postUserAsync(UserRequest(username = name, password = password)).let {
                 message = if (it.isSuccessful) {
                     "Your account was created successfully!"
                 } else {
@@ -28,6 +29,34 @@ class UserNetworkDataSourceImpl(private val apiUtils: ApiUtils) : UserNetworkDat
             message = "An error occurred, check the internet connection"
         }
         return message
+    }
+
+    override suspend fun loginUser(name: String, password: String): String {
+        var message: String
+        try {
+            apiUtils.apiService.getLoginTokenAsync(UserRequest(username = name, password = password)).let {
+                 if (it.isSuccessful) {
+                     message = "Logged in!"
+                     SessionManager.accessToken = it.body()?.token
+                     SessionManager.username = name
+                     getAllUsersAsync() //
+                } else {
+                        message = "Incorrect creditionals"
+                }
+            }
+        } catch (e: Exception) {
+            message = "An error occurred, check the internet connection"
+        }
+        return message
+    }
+
+    //temporary getting users list to check creditionals
+    private suspend fun getAllUsersAsync() {
+        try {
+            apiUtils.apiService.getAllUsersAsync()
+        }
+        catch (e: Exception) {
+        }
     }
 
 

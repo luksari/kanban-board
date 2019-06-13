@@ -1,7 +1,7 @@
 package com.mvvm.kanban_board.data.apiService
 
-import okhttp3.Interceptor
-import okhttp3.OkHttpClient
+import com.mvvm.kanban_board.session.SessionManager
+import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
@@ -10,7 +10,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RetrofitClient {
 
     var retrofit: Retrofit? = null
-
 
     fun getClient(): Retrofit? {
         if (retrofit == null) {
@@ -24,6 +23,7 @@ object RetrofitClient {
                     val request = original
                         .newBuilder()
                         .header("Content-Type", "application/json")
+                        .addHeader("Authorization", "JWT " + SessionManager.accessToken)
                         .method(original.method(), original.body())
                         .build()
 
@@ -33,6 +33,7 @@ object RetrofitClient {
                 .connectTimeout(200, TimeUnit.SECONDS)
                 .readTimeout(200, TimeUnit.SECONDS)
                 .build()
+
 
             retrofit = Retrofit.Builder()
                 .baseUrl(ApiUtils.BASE_URL)

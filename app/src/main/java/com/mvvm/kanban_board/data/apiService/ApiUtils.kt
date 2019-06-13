@@ -1,5 +1,6 @@
 package com.mvvm.kanban_board.data.apiService
 
+import android.preference.PreferenceManager.getDefaultSharedPreferences
 import retrofit2.Retrofit
 
 object ApiUtils {
@@ -8,4 +9,5 @@ object ApiUtils {
 
     val apiService: ApiService
         get() = RetrofitClient.getClient()!!.create(ApiService::class.java)
+
 }

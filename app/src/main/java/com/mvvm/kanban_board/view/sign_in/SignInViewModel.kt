@@ -27,9 +27,9 @@ class SignInViewModel(private val repository: Repository)  : ViewModel() {
     fun loginUser() {
         viewModelScope.launch {
             Log.d("LOGIN", username.value + " " + password.value)
-//            _loaderVisibility.value = View.VISIBLE
-//            _requestMessage.value = repository.registerNewUser(username.value!!, password.value!!)
-//            _loaderVisibility.value = View.GONE
+            _loaderVisibility.value = View.VISIBLE
+            _requestMessage.value = repository.loginUser(username.value!!, password.value!!)
+            _loaderVisibility.value = View.GONE
         }
     }
 
