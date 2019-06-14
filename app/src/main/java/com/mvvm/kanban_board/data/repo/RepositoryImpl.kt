@@ -18,9 +18,6 @@ class RepositoryImpl(
     override val authenticationState: LiveData<AuthenticationState>
         get() = _authenticationState
 
-
-
-
     override suspend fun registerNewUser(name: String, password: String): String {
         return userNetworkDataSource.registerUser(name, password)
     }
@@ -31,7 +28,7 @@ class RepositoryImpl(
 
    init{
        userNetworkDataSource.authenticationState.observeForever{
-           _authenticationState.postValue(it)
+           _authenticationState.value = it
        }
    }
 }

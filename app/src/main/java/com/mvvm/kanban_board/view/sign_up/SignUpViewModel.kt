@@ -26,18 +26,21 @@ class SignUpViewModel(private val repository: Repository) : ViewModel() {
     val errorUsername: LiveData<String>
         get() = _errorUsername
 
-    private val _isValid: MutableLiveData<Boolean> = MutableLiveData()
+    private var _isPasswordValid: MutableLiveData<Boolean> = MutableLiveData(false)
+    private var _isUsernameValid: MutableLiveData<Boolean> = MutableLiveData(false)
+
+    private val _isValid: MutableLiveData<Boolean> = MutableLiveData(false)
     val isValid: LiveData<Boolean>
         get() = _isValid
 
-    private val _loaderVisibility: MutableLiveData<Int> = MutableLiveData()
+    private val _loaderVisibility: MutableLiveData<Int> = MutableLiveData(GONE)
     val loaderVisibility: LiveData<Int>
         get() = _loaderVisibility
 
     fun registerNewUser() {
         viewModelScope.launch {
-            _loaderVisibility.value = VISIBLE
-            _responseMessage.postValue(repository.registerNewUser(username.value!!, password.value!!))
+            _loaderVisibility.value=VISIBLE
+            _responseMessage.value = repository.registerNewUser(username.value!!, password.value!!)
             _loaderVisibility.value = GONE
         }
     }
@@ -48,15 +51,14 @@ class SignUpViewModel(private val repository: Repository) : ViewModel() {
         val PASSWORD_REGEX_UPPERCASE = """^(.*[A-Z].*)$""".toRegex()
         val PASSWORD_REGEX_NUMBER = """^(.*\d.*)$""".toRegex()
         val PASSWORD_REGEX_SPEC_CHAR = """^(.*[@$!%*?&.].*)$""".toRegex()
-
         val PASSWORD_REGEX = """^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.])[A-Za-z\d@$!%*?&.]{8,}$""".toRegex()
         val validate = PASSWORD_REGEX.matches(_password)
 
         if (validate) {
-            _isValid.value = true
+            _isPasswordValid.value = true
             _errorPassword.value = null
         } else {
-            _isValid.value = false
+            _isPasswordValid.value = false
             _errorPassword.let {
                 if (_password.length < 8) {
                     it.value = "Password must be at least 8 characters long"
@@ -83,10 +85,10 @@ class SignUpViewModel(private val repository: Repository) : ViewModel() {
         var validate = USERNAME_REGEX.matches(_username)
 
         if (validate) {
-            _isValid.value = true
+            _isUsernameValid.value = true
             _errorUsername.value = null
         } else {
-            _isValid.value = false
+            _isUsernameValid.value = false
             _errorUsername.let {
                 if (!USERNAME_REGEX_CHAR.matches(_username)) {
                     it.value = "Username must contain only letters, numbers or (@.+-_) characters"
@@ -98,11 +100,11 @@ class SignUpViewModel(private val repository: Repository) : ViewModel() {
     }
 
     init {
-        _isValid.value = false
-        _responseMessage.value = ""
-        _loaderVisibility.value = GONE
         username.observeForever { validateUsername(it) }
         password.observeForever { validatePassword(it) }
+
+        _isPasswordValid.observeForever { _isValid.value = (it && _isUsernameValid.value!!) }
+        _isUsernameValid.observeForever { _isValid.value = (it && _isPasswordValid.value!!) }
     }
 }
 

@@ -78,7 +78,9 @@ dependencies {
 
     // Gson
     implementation "com.google.code.gson:gson:2.8.5"
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+
+    //extension eg for MutableLiveData
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0-alpha01'
 
     //fix
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
