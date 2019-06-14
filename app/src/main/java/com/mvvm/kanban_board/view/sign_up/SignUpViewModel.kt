@@ -1,9 +1,7 @@
 package com.mvvm.kanban_board.view.sign_up
 
-import android.util.Log
 import android.view.View.GONE
 import android.view.View.VISIBLE
-import androidx.databinding.Bindable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,9 +15,9 @@ class SignUpViewModel(private val repository: Repository) : ViewModel() {
     val password: MutableLiveData<String> = MutableLiveData()
     val username: MutableLiveData<String> = MutableLiveData()
 
-    private val _requestMessage: MutableLiveData<String> = MutableLiveData()
-    val requestMessage: LiveData<String>
-        get() = _requestMessage
+    private val _responseMessage: MutableLiveData<String> = MutableLiveData()
+    val responseMessage: LiveData<String>
+        get() = _responseMessage
 
     private val _errorPassword: MutableLiveData<String> = MutableLiveData()
     val errorPassword: LiveData<String>
@@ -39,7 +37,7 @@ class SignUpViewModel(private val repository: Repository) : ViewModel() {
     fun registerNewUser() {
         viewModelScope.launch {
             _loaderVisibility.value = VISIBLE
-            _requestMessage.value = repository.registerNewUser(username.value!!, password.value!!)
+            _responseMessage.postValue(repository.registerNewUser(username.value!!, password.value!!))
             _loaderVisibility.value = GONE
         }
     }
@@ -101,7 +99,7 @@ class SignUpViewModel(private val repository: Repository) : ViewModel() {
 
     init {
         _isValid.value = false
-        _requestMessage.value = ""
+        _responseMessage.value = ""
         _loaderVisibility.value = GONE
         username.observeForever { validateUsername(it) }
         password.observeForever { validatePassword(it) }

@@ -10,4 +10,7 @@ object ApiUtils {
     val apiService: ApiService
         get() = RetrofitClient.getClient()!!.create(ApiService::class.java)
 
+    val apiServiceAuth: ApiService
+        get() = RetrofitClient.getAuthorizeClient()!!.create(ApiService::class.java)
+
 }

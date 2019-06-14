@@ -9,6 +9,8 @@ object SessionManager {
     private const val USER_ID = "USER_ID"
     private const val USER_NAME = "USER_NAME"
     private const val ACCESS_TOKEN = "ACCESS_TOKEN"
+    private const val REFRESH_TOKEN = "REFRESH_TOKEN"
+
     private lateinit var preferences: SharedPreferences
 
     fun init(context: Context) {
@@ -16,6 +18,13 @@ object SessionManager {
     }
 
     var accessToken: String?
+        get() = preferences.getString(ACCESS_TOKEN, "")
+        set(value) {
+            preferences.edit().putString(ACCESS_TOKEN, value).apply()
+        }
+
+
+    var refreshToken: String?
         get() = preferences.getString(ACCESS_TOKEN, "")
         set(value) {
             preferences.edit().putString(ACCESS_TOKEN, value).apply()

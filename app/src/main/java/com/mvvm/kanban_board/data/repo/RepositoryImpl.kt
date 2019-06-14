@@ -18,12 +18,15 @@ class RepositoryImpl(
     override val authenticationState: LiveData<AuthenticationState>
         get() = _authenticationState
 
-    override suspend fun registerNewUser(name: String, password: String): String? {
+
+
+
+    override suspend fun registerNewUser(name: String, password: String): String {
         return userNetworkDataSource.registerUser(name, password)
     }
 
-    override suspend fun loginUser(name: String, password: String){//}: String? {
-        userNetworkDataSource.loginUser(name, password)
+    override suspend fun loginUser(name: String, password: String): String? {
+        return userNetworkDataSource.loginUser(name, password)
     }
 
    init{

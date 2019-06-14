@@ -18,6 +18,12 @@ interface ApiService {
     @POST("/api/obtain-token/")
     suspend fun getLoginTokenAsync(@Body user: UserRequest): Response<TokenResponse>
 
+    @POST("/api/verify-token/")
+    suspend fun getRefreshTokenAsync(@Body token: TokenResponse): Response<TokenResponse>
+
+
+    //need authentication
     @GET("/api/users")
     suspend fun getAllUsersAsync():Response <List<UserRegisterResponse>>
+
 }

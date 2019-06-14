@@ -20,9 +20,9 @@ class SignInViewModel(private val repository: Repository)  : ViewModel() {
     private val _authenticationState = MutableLiveData<AuthenticationState>()
     val authenticationState: LiveData<AuthenticationState>
         get() = _authenticationState
-    private val _requestMessage: MutableLiveData<String> = MutableLiveData()
-    val requestMessage: LiveData<String>
-        get() = _requestMessage
+    private val _responseMessage: MutableLiveData<String> = MutableLiveData()
+    val responseMessage: LiveData<String>
+        get() = _responseMessage
 
     private val _loaderVisibility: MutableLiveData<Int> = MutableLiveData()
     val loaderVisibility: LiveData<Int>
@@ -31,25 +31,17 @@ class SignInViewModel(private val repository: Repository)  : ViewModel() {
 
     fun loginUser() {
         viewModelScope.launch {
-            Log.d("LOGIN", username.value + " " + password.value)
             _loaderVisibility.value = View.VISIBLE
-            repository.loginUser(username.value!!, password.value!!)
-            //get messages or observe
+            _responseMessage.postValue(repository.loginUser(username.value!!, password.value!!))
             _loaderVisibility.value = View.GONE
         }
     }
 
     init {
-        _requestMessage.value = ""
+        _responseMessage.value = ""
         _loaderVisibility.value = View.GONE
 
-
         repository.authenticationState.observeForever{
-            when(it){
-                AuthenticationState.INVALID_AUTHENTICATION -> _requestMessage.postValue("Invalid creditionals")
-                AuthenticationState.UNAUTHENTICATED -> _requestMessage.postValue("An error occurred, check the internet connections")
-            }
-            _authenticationState.postValue(it)
-        }
+            _authenticationState.postValue(it) }
     }
 }
