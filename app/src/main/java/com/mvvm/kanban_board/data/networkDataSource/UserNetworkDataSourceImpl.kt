@@ -1,7 +1,10 @@
 package com.mvvm.kanban_board.data.networkDataSource
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.mvvm.kanban_board.data.apiService.ApiUtils
 import com.mvvm.kanban_board.data.apiService.request.UserRequest
+import com.mvvm.kanban_board.session.AuthenticationState
 import com.mvvm.kanban_board.session.SessionManager
 
 import org.json.JSONObject
@@ -9,6 +12,9 @@ import org.json.JSONObject
 
 class UserNetworkDataSourceImpl(private val apiUtils: ApiUtils) : UserNetworkDataSource {
 
+    private val _authenticationState = MutableLiveData<AuthenticationState>()
+    override val authenticationState: LiveData<AuthenticationState>
+        get() = _authenticationState
 
     override suspend fun registerUser(name: String, password: String): String {
         var message: String
@@ -31,23 +37,25 @@ class UserNetworkDataSourceImpl(private val apiUtils: ApiUtils) : UserNetworkDat
         return message
     }
 
-    override suspend fun loginUser(name: String, password: String): String {
-        var message: String
+    override suspend fun loginUser(name: String, password: String){//}: String {
+       // var message: String
         try {
             apiUtils.apiService.getLoginTokenAsync(UserRequest(username = name, password = password)).let {
                  if (it.isSuccessful) {
-                     message = "Logged in!"
                      SessionManager.accessToken = it.body()?.token
                      SessionManager.username = name
+                     _authenticationState.postValue(AuthenticationState.AUTHENTICATED)
                      getAllUsersAsync() //
                 } else {
-                        message = "Incorrect creditionals"
-                }
+                       // message = "Incorrect creditionals"
+                        _authenticationState.postValue(AuthenticationState.INVALID_AUTHENTICATION)
+                 }
             }
         } catch (e: Exception) {
-            message = "An error occurred, check the internet connection"
+           // message = "An error occurred, check the internet connection"
+            _authenticationState.postValue(AuthenticationState.UNAUTHENTICATED)
         }
-        return message
+        //return message
     }
 
     //temporary getting users list to check creditionals

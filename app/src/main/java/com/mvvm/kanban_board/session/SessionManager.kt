@@ -15,14 +15,11 @@ object SessionManager {
         preferences = PreferenceManager.getDefaultSharedPreferences(context)
     }
 
-
-
     var accessToken: String?
         get() = preferences.getString(ACCESS_TOKEN, "")
         set(value) {
             preferences.edit().putString(ACCESS_TOKEN, value).apply()
         }
-
 
     //logged in user during current session
 
@@ -44,7 +41,7 @@ object SessionManager {
 //            preferences.edit().putString(USER_ID, value.toString()).apply()
 //        }
 
-    
+
 //
 //    fun logout(context: Context) {     //used also when token is deprecated
 //        preferences.edit().clear().apply()
