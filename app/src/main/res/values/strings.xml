@@ -22,4 +22,19 @@
     <string name="create_board_title">Set code for your board that you want to create!</string>
     <string name="go_to_enter_board_text"><b><u>Do you want to join existing board?</u></b></string>
     <string name="create_board_button_text">create</string>
+
+    //drawer_menu
+    <string name="members_title">Members</string>
+    <string name="activities_title">Activities</string>
+    <string name="your_boards_title">Your boards</string>
+    <string name="settings_title">Settings</string>
+    <string name="quit_this_board_title">Quit this board</string>
+    <string name="nav_open">Open Navigation Drawer</string>
+    <string name="nav_close">Close Navigation Drawer</string>
+
+    //board
+    <string name="add_text">ADD</string>
+
+
+
 </resources>

@@ -5,7 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.OrientationHelper
 import com.mvvm.kanban_board.R
+import com.mvvm.kanban_board.view.MainActivity
+import kotlinx.android.synthetic.main.pages_bar_fragment.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class PagesBarFragment : Fragment() {
@@ -25,6 +29,7 @@ class PagesBarFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
     }
 
 }
