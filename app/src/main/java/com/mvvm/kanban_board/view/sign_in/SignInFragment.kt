@@ -1,6 +1,7 @@
 package com.mvvm.kanban_board.view.sign_in
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -37,9 +38,10 @@ class SignInFragment : Fragment() {
             navController.navigate(R.id.signUpFragment)
         }
         viewModel.authenticationState.observe(viewLifecycleOwner, Observer { authenticationState ->
+            // If user is authenticated succesfully, navigate to the board fragment
             if(authenticationState ==  AuthenticationState.AUTHENTICATED)
-                navController.navigate(R.id.signUpFragment) })
-                 //initially, should be boardFragment
+                navController.navigate(R.id.boardFragment)
+        })
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

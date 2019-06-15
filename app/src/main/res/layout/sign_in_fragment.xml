@@ -72,18 +72,23 @@
                     android:text="@={viewModel.username}"
                     android:background="@drawable/top_rounded_edittext"
                     android:layout_marginTop="@dimen/marigin_sign_up_edittext"
-                    android:padding="@dimen/padding_sign_up_edittext" />
+                    android:padding="@dimen/padding_sign_up_edittext"
+                    android:textColorHint="@color/colorAccent"
+                    android:textColor="@color/colorPrimary"/>
             <EditText
                     android:id="@+id/passwordEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/loginEditText"
+                    android:inputType="textPassword"
                     android:hint="@string/password_hint"
                     android:text="@={viewModel.password}"
                     android:background="@drawable/top_rounded_edittext"
                     android:layout_marginTop="@dimen/marigin_sign_up_edittext"
-                    android:padding="@dimen/padding_sign_up_edittext" />
+                    android:padding="@dimen/padding_sign_up_edittext"
+                    android:textColorHint="@color/colorAccent"
+                    android:textColor="@color/colorPrimary"/>
             <TextView
                     android:id="@+id/go_to_sign_up"
                     app:layout_constraintTop_toBottomOf="@id/passwordEditText"
