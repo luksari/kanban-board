@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/group_members" android:checkableBehavior="single">
+    <item android:id="@+id/nav_members"
+          android:icon="@drawable/ic_members"
+          android:title="@string/members_title"/>
+    </group>
+
+    <group android:id="@+id/group_activities" android:checkableBehavior="single">
+    <item android:id="@+id/nav_activities"
+          android:icon="@drawable/ic_activities"
+          android:title="@string/activities_title" />
+    </group>
+
+    <group android:id="@+id/group_boards" android:checkableBehavior="single">
+    <item android:id="@+id/nav_your_boards"
+          android:icon="@drawable/ic_your_boards"
+          android:title="@string/your_boards_title" />
+    </group>
+
+    <group android:id="@+id/group_settings" android:checkableBehavior="single">
+    <item android:id="@+id/nav_settings"
+          android:icon="@drawable/ic_settings"
+          android:title="@string/settings_title" />
+    </group>
+
+</menu>
