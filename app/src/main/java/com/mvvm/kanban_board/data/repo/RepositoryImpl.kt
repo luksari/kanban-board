@@ -8,6 +8,7 @@ import com.mvvm.kanban_board.data.networkDataSource.BoardNetworkDataSourceImpl
 import com.mvvm.kanban_board.data.networkDataSource.UserNetworkDataSource
 import com.mvvm.kanban_board.data.networkDataSource.UserNetworkDataSourceImpl
 import com.mvvm.kanban_board.session.AuthenticationState
+import com.mvvm.kanban_board.session.SessionManager
 import kotlinx.coroutines.delay
 
 
@@ -28,8 +29,8 @@ class RepositoryImpl(
         return userNetworkDataSource.loginUser(name, password)
     }
 
-    override suspend fun createBoard(identifier: String, name: String, ownerID: Long): String? {
-        return boardNetworkDataSource.addBoard(identifier, name, ownerID)
+    override suspend fun createBoard(identifier: String, name: String): String? {
+        return boardNetworkDataSource.addBoard(identifier, name, SessionManager.userID!!.toLong())
     }
 
    init{

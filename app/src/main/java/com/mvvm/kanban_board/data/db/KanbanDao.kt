@@ -6,10 +6,13 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.mvvm.kanban_board.data.db.entity.Board
+import com.mvvm.kanban_board.data.db.entity.Session
 import com.mvvm.kanban_board.data.db.entity.User
 
 @Dao
 interface KanbanDao {
+
+
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun upsertUser(user: User)
@@ -22,7 +25,6 @@ interface KanbanDao {
 
     @Query("select * from boards where idB = :id ")
     fun getBoardByID(id: String): LiveData<Board>
-
 
 
     //for testing without LiveData

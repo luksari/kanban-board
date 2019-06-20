@@ -38,6 +38,12 @@ object SessionManager {
         preferences.edit().putString(USER_NAME, value).apply()
     }
 
+    var userID: String?
+        get() = preferences.getString(USER_ID, "")
+        set(value) {
+            preferences.edit().putString(USER_ID, value).apply()
+        }
+
 
 //    val userIDString: String?
 //        get() = preferences.getString(USER_ID, "")

@@ -43,7 +43,7 @@ class CreateBoardViewModel(private val repository: Repository)  : ViewModel() {
            Log.d("http", "CREATE BOARD")
            viewModelScope.launch {
                 _loaderVisibility.value = View.VISIBLE
-                _responseMessage.value = repository.createBoard(boardCode.value!!, name.value!!, 1)
+                _responseMessage.value = repository.createBoard(boardCode.value!!, name.value!!)
                 _loaderVisibility.value = View.GONE
            }
    }

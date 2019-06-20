@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.mvvm.kanban_board.data.apiService.ApiUtils
 import com.mvvm.kanban_board.data.apiService.request.UserRequest
+import com.mvvm.kanban_board.data.apiService.response.UserRegisterResponse
 import com.mvvm.kanban_board.session.AuthenticationState
 import com.mvvm.kanban_board.session.SessionManager
 
@@ -45,8 +46,10 @@ class UserNetworkDataSourceImpl(private val apiUtils: ApiUtils) : UserNetworkDat
                 if (it.isSuccessful) {
                      SessionManager.accessToken = it.body()?.token
                      SessionManager.username = name
+                    getAllUsersAsync()?.find { u -> u.username == SessionManager.username  }.let{
+                        SessionManager.userID = it?.id.toString()
+                    }
                      _authenticationState.postValue(AuthenticationState.AUTHENTICATED)
-                    // getAllUsersAsync() //
                 } else {
                         message = "Incorrect creditionals"
                         _authenticationState.postValue(AuthenticationState.UNAUTHENTICATED)
@@ -60,13 +63,17 @@ class UserNetworkDataSourceImpl(private val apiUtils: ApiUtils) : UserNetworkDat
     }
 
     //temporary getting users list to check creditionals
-    private suspend fun getAllUsersAsync() {
+    private suspend fun getAllUsersAsync(): List<UserRegisterResponse>?{
         try {
-            apiUtils.apiServiceAuth.getAllUsersAsync()
+            apiUtils.apiServiceAuth.getAllUsersAsync().let{
+                return it.body()
+            }
         }
         catch (e: Exception) {
         }
+        return null
     }
+
 
 
 }
