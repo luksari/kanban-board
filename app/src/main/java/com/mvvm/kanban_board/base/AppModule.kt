@@ -2,6 +2,8 @@ import com.mvvm.kanban_board.data.apiService.ApiUtils
 import com.mvvm.kanban_board.data.repo.Repository
 import com.mvvm.kanban_board.data.repo.RepositoryImpl
 import com.mvvm.kanban_board.data.db.KanbanDatabase
+import com.mvvm.kanban_board.data.networkDataSource.BoardNetworkDataSource
+import com.mvvm.kanban_board.data.networkDataSource.BoardNetworkDataSourceImpl
 import com.mvvm.kanban_board.data.networkDataSource.UserNetworkDataSource
 import com.mvvm.kanban_board.data.networkDataSource.UserNetworkDataSourceImpl
 import com.mvvm.kanban_board.view.board.BoardViewModel
@@ -28,7 +30,8 @@ val appModule = module {
 
     single {ApiUtils}
     single { UserNetworkDataSourceImpl (get()) as UserNetworkDataSource}
-    single { RepositoryImpl(get(), get()) as Repository }
+    single { BoardNetworkDataSourceImpl (get()) as BoardNetworkDataSource}
+    single { RepositoryImpl(get(), get(), get()) as Repository }
     single { KanbanDatabase.buildDatabase(androidApplication())}
     single { get<KanbanDatabase>().kanbanDao() }
 

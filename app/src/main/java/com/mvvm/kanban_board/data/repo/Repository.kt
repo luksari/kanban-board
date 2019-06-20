@@ -10,6 +10,7 @@ interface Repository {
     //API
     suspend fun registerNewUser(name: String, password: String): String?
     suspend fun loginUser(name: String, password: String): String?
+    suspend fun createBoard(identifier: String, name: String, ownerID: Long): String?
 
     val authenticationState: LiveData<AuthenticationState>
 }

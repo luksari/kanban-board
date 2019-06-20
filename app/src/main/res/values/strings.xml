@@ -18,6 +18,8 @@
 
     //board enter
     <string name="board_code_hint">board code...</string>
+    <string name="board_name_hint">board name...</string>
+
     <string name="enter_board_title">Enter code for your board that you have been invited.</string>
     <string name="go_to_create_board_text"><b><u>Do you want to create your own board?</u></b></string>
     <string name="enter_board_button_text">Enter</string>

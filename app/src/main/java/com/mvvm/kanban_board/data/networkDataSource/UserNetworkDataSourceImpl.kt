@@ -16,9 +16,6 @@ class UserNetworkDataSourceImpl(private val apiUtils: ApiUtils) : UserNetworkDat
     override val authenticationState: LiveData<AuthenticationState>
         get() = _authenticationState
 
-    private val _responseMessage = MutableLiveData<String>()
-    override val responseMessage: LiveData<String>
-        get() = _responseMessage
 
     override suspend fun registerUser(name: String, password: String): String {
         var message: String
@@ -49,7 +46,7 @@ class UserNetworkDataSourceImpl(private val apiUtils: ApiUtils) : UserNetworkDat
                      SessionManager.accessToken = it.body()?.token
                      SessionManager.username = name
                      _authenticationState.postValue(AuthenticationState.AUTHENTICATED)
-                     getAllUsersAsync() //
+                    // getAllUsersAsync() //
                 } else {
                         message = "Incorrect creditionals"
                         _authenticationState.postValue(AuthenticationState.UNAUTHENTICATED)
