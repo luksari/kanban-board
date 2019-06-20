@@ -38,7 +38,7 @@ class SignInFragment : Fragment() {
         }
         viewModel.authenticationState.observe(viewLifecycleOwner, Observer { authenticationState ->
             if(authenticationState ==  AuthenticationState.AUTHENTICATED)
-                navController.navigate(R.id.signUpFragment) })
+                navController.navigate(R.id.enterBoardFragment) })
                  //initially, should be boardFragment
     }
 

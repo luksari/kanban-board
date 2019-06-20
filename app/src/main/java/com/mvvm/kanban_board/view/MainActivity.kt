@@ -13,7 +13,6 @@ import com.google.android.material.navigation.NavigationView
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.mvvm.kanban_board.R
-import com.mvvm.kanban_board.view.Board.ActivitiesAdapter
 import com.mvvm.kanban_board.view.TopBar.PagesBar.PagesAdapter
 import kotlinx.android.synthetic.main.action_bar_fragment.*
 import kotlinx.android.synthetic.main.activities_list_fragment.*
@@ -25,43 +24,43 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() { //, NavigationView.OnNavigationItemSelectedListener
 
-    private val viewModel : MainActivityViewModel by viewModel()
+    private val viewModel: MainActivityViewModel by viewModel()
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+
+////        setSupportActionBar(toolbar)
+////        initActionBar()
+//
+//
+//        //temporary loading from json here with context
+//        // myRepo.initializeFakeData(this.applicationContext)
+//
+//        //pagesList
+//        val pages: ArrayList<String> = ArrayList()
+//
+//        for (i in 1..10) {
+//            pages.add("Page $i")
+//        }
+//
+//        pagesList.layoutManager = LinearLayoutManager(this, OrientationHelper.HORIZONTAL, false)
+//        pagesList.adapter = PagesAdapter(pages)
+//
+//        //activitiesList
+//        val activities: ArrayList<String> = ArrayList()
+//
+//        for (i in 1..10) {
+//            activities.add("Do $i")
+//        }
+//
+//        activitiesList.layoutManager = LinearLayoutManager(this)
+//        activitiesList.adapter = ActivitiesAdapter(activities)
+
     }
-//        setSupportActionBar(toolbar)
-//        initActionBar()
-
-
-
-        //temporary loading from json here with context
-       // myRepo.initializeFakeData(this.applicationContext)
-
-        //pagesList
-        val pages: ArrayList<String> = ArrayList()
-
-        for(i in 1..10) {
-            pages.add("Page $i")
-        }
-
-        pagesList.layoutManager = LinearLayoutManager(this, OrientationHelper.HORIZONTAL, false)
-        pagesList.adapter = PagesAdapter(pages)
-
-        //activitiesList
-        val activities: ArrayList<String> = ArrayList()
-
-        for(i in 1..10) {
-            activities.add("Do $i")
-        }
-
-        activitiesList.layoutManager = LinearLayoutManager(this)
-        activitiesList.adapter = ActivitiesAdapter(activities)
-
-    }
+}
 
 //    //drawerMenu
 //    private fun initActionBar() {
@@ -96,4 +95,4 @@ class MainActivity : AppCompatActivity() { //, NavigationView.OnNavigationItemSe
 //        drawer_layout.closeDrawer(GravityCompat.START)
 //        return true
 //    }
-}
+
