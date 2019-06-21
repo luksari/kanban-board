@@ -39,8 +39,10 @@
 
     //board
     <string name="add_text">ADD</string>
-
-
-
+    //card_details
+    <string name="remove_card_button_text">remove</string>
+    <string name="save_card_button_text">save</string>
+    <string name="description_card_hint">Task description</string>
+    <string name="owner_card_text">Author</string>
     <string name="token"/>
 </resources>
