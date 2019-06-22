@@ -78,8 +78,10 @@
                     android:padding="@dimen/padding_sign_up_edittext"
                     android:text="@={viewModel.username}"
                     app:error="@{viewModel.errorUsername}"
-                    android:textColor="@color/colorPrimary"/>
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@color/colorDrawer"/>
             <EditText
+
                     android:id="@+id/passwordEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -92,7 +94,8 @@
                     android:padding="@dimen/padding_sign_up_edittext"
                     android:text="@={viewModel.password}"
                     app:error="@{viewModel.errorPassword}"
-                    android:textColor="@color/colorPrimary"/>
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@color/colorDrawer"/>
             <TextView
                     android:id="@+id/go_to_sign_in"
                     app:layout_constraintTop_toBottomOf="@id/passwordEditText"
