@@ -39,7 +39,7 @@ class SignInFragment : Fragment() {
         }
         viewModel.authenticationState.observe(viewLifecycleOwner, Observer { authenticationState ->
             if(authenticationState ==  AuthenticationState.AUTHENTICATED) {
-                navController.navigate(R.id.boardFragment) }
+                navController.navigate(R.id.pages_pager) }
             else {
                 Log.i("SIGN_IN", "Authorization failed")
             }

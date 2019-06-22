@@ -1,6 +1,5 @@
-package com.mvvm.kanban_board.view.top_bar.pages_bar
+package com.mvvm.kanban_board.view.board.pages_tab_layout
 
-import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter

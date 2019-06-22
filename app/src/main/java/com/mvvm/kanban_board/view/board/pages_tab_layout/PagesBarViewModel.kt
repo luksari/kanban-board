@@ -1,4 +1,4 @@
-package com.mvvm.kanban_board.view.top_bar.pages_bar
+package com.mvvm.kanban_board.view.board.pages_tab_layout
 
 import androidx.lifecycle.ViewModel;
 import com.mvvm.kanban_board.data.repo.Repository

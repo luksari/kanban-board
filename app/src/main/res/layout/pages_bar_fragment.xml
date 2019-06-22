@@ -2,10 +2,7 @@
 <layout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".view.TopBar.PagesBar.PagesBarFragment">
-
+        tools:context=".view.board.pages_tab_layout.PagesCollectionFragmentAdapter">
     <androidx.viewpager.widget.ViewPager
             android:id="@+id/pages-pager"
             android:layout_width="match_parent"

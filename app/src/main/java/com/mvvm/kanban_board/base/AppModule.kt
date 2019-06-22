@@ -9,17 +9,12 @@ import com.mvvm.kanban_board.data.networkDataSource.UserNetworkDataSourceImpl
 import com.mvvm.kanban_board.view.board.BoardViewModel
 import com.mvvm.kanban_board.view.card_details.CardDetailsViewModel
 import com.mvvm.kanban_board.view.create_board.CreateBoardViewModel
-import com.mvvm.kanban_board.view.drawer_menu.board_history.BoardHistoryViewModel
-import com.mvvm.kanban_board.view.drawer_menu.DrawerMenuViewModel
-import com.mvvm.kanban_board.view.drawer_menu.members.MembersViewModel
-import com.mvvm.kanban_board.view.drawer_menu.settings.SettingsViewModel
-import com.mvvm.kanban_board.view.drawer_menu.your_boards.YourBoardsViewModel
 import com.mvvm.kanban_board.view.enter_board.EnterBoardViewModel
 import com.mvvm.kanban_board.view.MainActivityViewModel
 import com.mvvm.kanban_board.view.sign_in.SignInViewModel
 import com.mvvm.kanban_board.view.sign_up.SignUpViewModel
 import com.mvvm.kanban_board.view.top_bar.action_bar.ActionBarViewModel
-import com.mvvm.kanban_board.view.top_bar.pages_bar.PagesBarViewModel
+import com.mvvm.kanban_board.view.board.pages_tab_layout.PagesBarViewModel
 import com.mvvm.kanban_board.view.top_bar.TopBarViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.viewmodel.dsl.viewModel
@@ -42,11 +37,6 @@ val appModule = module {
     viewModel { MainActivityViewModel(get()) }
     viewModel { BoardViewModel(get()) }
     viewModel { CardDetailsViewModel(get()) }
-    viewModel { DrawerMenuViewModel(get()) }
-    viewModel { BoardHistoryViewModel(get()) }
-    viewModel { YourBoardsViewModel(get()) }
-    viewModel { SettingsViewModel(get()) }
-    viewModel { MembersViewModel(get()) }
     viewModel { EnterBoardViewModel(get()) }
     viewModel { CreateBoardViewModel(get()) }
     viewModel { SignInViewModel(get()) }
