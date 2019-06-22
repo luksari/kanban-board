@@ -13,11 +13,12 @@ class PagesCollectionPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapt
 
     override fun getPageTitle(position: Int): CharSequence? {
         return when(position){
-            1 -> "Todo"
-            2 -> "In progress"
-            3 -> "Testing"
-            4 -> "Done"
+            0 -> "Todo"
+            1 -> "In progress"
+            2 -> "Testing"
+            3 -> "Done"
             else -> {
+                // heh
                 "PUTA QUE PARIU?!!?!?"
             }
         }
