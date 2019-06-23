@@ -6,10 +6,7 @@ import com.mvvm.kanban_board.data.apiService.response.BoardResponse
 import com.mvvm.kanban_board.data.db.KanbanDao
 import com.mvvm.kanban_board.data.db.entity.Board
 import com.mvvm.kanban_board.data.db.entity.BoardsResponse
-import com.mvvm.kanban_board.data.networkDataSource.BoardNetworkDataSource
-import com.mvvm.kanban_board.data.networkDataSource.BoardNetworkDataSourceImpl
-import com.mvvm.kanban_board.data.networkDataSource.UserNetworkDataSource
-import com.mvvm.kanban_board.data.networkDataSource.UserNetworkDataSourceImpl
+import com.mvvm.kanban_board.data.networkDataSource.*
 import com.mvvm.kanban_board.session.AuthenticationState
 import com.mvvm.kanban_board.session.SessionManager
 import kotlinx.coroutines.delay
@@ -18,7 +15,10 @@ import kotlinx.coroutines.delay
 class RepositoryImpl(
     private val kanbanDao: KanbanDao,
     private val userNetworkDataSource: UserNetworkDataSource,
-    private val boardNetworkDataSource: BoardNetworkDataSource) : Repository {
+    private val boardNetworkDataSource: BoardNetworkDataSource,
+    private val pageNetworkDataSource: PageNetworkDataSource,
+    private val taskNetworkDataSource: TaskNetworkDataSource) : Repository {
+
 
 
     private val _authenticationState = MutableLiveData<AuthenticationState>()
@@ -44,18 +44,22 @@ class RepositoryImpl(
     }
 
     override suspend fun createBoard(identifier: String, name: String): String? {
+
+
+
         return boardNetworkDataSource.addBoard(identifier, name, SessionManager.userID!!.toLong())
     }
+
 
     override suspend fun enterBoard(identifier: String): String? {
         //always refreshing boards when entering another
         boardNetworkDataSource.loadBoards()?.let {
             val searched = it.firstOrNull{b  -> b.identifier == identifier}
-            if(searched == null){
-                return "Board with this indetifier does not exist!"
+            return if(searched == null){
+                "Board with this indetifier does not exist!"
             } else {
                 _currentBoard.value = searched
-                return ""
+                ""
             }
         }
         return "Server problem occured, check the internet connection"  //need handle the internet connection

@@ -73,29 +73,17 @@
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="action_enterBoardFragment_to_boardFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_enterBoardFragment_to_createBoardFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
                             </entry>
-                            <entry key="action_enterBoardFragment_to_pagesCollectionFragmentAdapter">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
                           </map>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
-                  <entry key="pagesCollectionFragmentAdapter">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="704" />
-                            <option name="y" value="94" />
-                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>
