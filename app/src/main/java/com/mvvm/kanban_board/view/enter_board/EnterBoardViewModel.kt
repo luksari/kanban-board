@@ -5,7 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.viewModelScope
+import com.mvvm.kanban_board.data.apiService.response.BoardResponse
 import com.mvvm.kanban_board.data.repo.Repository
+import com.mvvm.kanban_board.session.AuthenticationState
 import kotlinx.coroutines.launch
 
 class EnterBoardViewModel(private val repository: Repository)  : ViewModel() {
@@ -20,6 +22,12 @@ class EnterBoardViewModel(private val repository: Repository)  : ViewModel() {
     val responseMessage: LiveData<String>
         get() = _responseMessage
 
+
+    private val _enteredBoard = MutableLiveData<BoardResponse>()
+    val enteredBoard: LiveData<BoardResponse>
+        get() = _enteredBoard
+
+
     fun enterBoard() {
         viewModelScope.launch {
             _loaderVisibility.value = View.VISIBLE
@@ -27,6 +35,12 @@ class EnterBoardViewModel(private val repository: Repository)  : ViewModel() {
             _loaderVisibility.value = View.GONE
         }
     }
+
+    init {
+        repository.currentBoard.observeForever{ _enteredBoard.value = it }
+    }
+
+
 
 
 }

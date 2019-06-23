@@ -39,7 +39,6 @@ class SignInFragment : Fragment() {
         viewModel.authenticationState.observe(viewLifecycleOwner, Observer { authenticationState ->
             if(authenticationState ==  AuthenticationState.AUTHENTICATED)
                 navController.navigate(R.id.enterBoardFragment) })
-                 //initially, should be boardFragment
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

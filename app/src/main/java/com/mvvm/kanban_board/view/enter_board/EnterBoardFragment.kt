@@ -6,13 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 
 import com.mvvm.kanban_board.R
 import com.mvvm.kanban_board.databinding.CreateBoardFragmentBinding
 import com.mvvm.kanban_board.databinding.EnterBoardFragmentBinding
+import com.mvvm.kanban_board.session.AuthenticationState
 import com.mvvm.kanban_board.view.sign_up.SignUpViewModel
 import kotlinx.android.synthetic.main.enter_board_fragment.*
+import kotlinx.android.synthetic.main.sign_in_fragment.*
 import kotlinx.android.synthetic.main.sign_up_fragment.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -35,13 +38,18 @@ class EnterBoardFragment : Fragment() {
     }
 
     private fun setupListeners(){
+        val navController = findNavController()
         go_to_create_board.setOnClickListener {
-            findNavController().navigate(R.id.createBoardFragment)
+            navController.navigate(R.id.createBoardFragment)
         }
+        viewModel.enteredBoard.observe(viewLifecycleOwner, Observer {
+                navController.navigate(R.id.boardFragment) })
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         setupListeners()
         super.onActivityCreated(savedInstanceState)
     }
+
+
 
 }
