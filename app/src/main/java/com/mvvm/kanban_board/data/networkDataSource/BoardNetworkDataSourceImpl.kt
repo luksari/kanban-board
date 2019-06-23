@@ -1,12 +1,30 @@
 package com.mvvm.kanban_board.data.networkDataSource
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.mvvm.kanban_board.data.apiService.ApiUtils
 import com.mvvm.kanban_board.data.apiService.request.BoardRequest
 import com.mvvm.kanban_board.data.apiService.request.UserRequest
+import com.mvvm.kanban_board.data.apiService.response.BoardResponse
 import com.mvvm.kanban_board.data.db.entity.User
 import org.json.JSONObject
 
 class BoardNetworkDataSourceImpl(private val apiUtils: ApiUtils): BoardNetworkDataSource {
+
+//    private val _loadedBoards = MutableLiveData<List<BoardResponse>>()
+//    override val loadedBoards: LiveData<List<BoardResponse>>
+//        get() = _loadedBoards
+
+    override suspend fun loadBoards(): List<BoardResponse>? {
+        try{
+            apiUtils.apiService.getAllBoardsAsync().let{
+                if(it.isSuccessful) return it.body()
+            }
+        }catch(e: Exception){
+            //internet problems?
+        }
+        return null
+    }
 
     override suspend fun addBoard(identifier: String, name: String, ownerID: Long): String {
         //temporary request with color and listOf users -> remove color, stay with board owner/creator

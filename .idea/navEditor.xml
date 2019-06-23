@@ -13,8 +13,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="902" />
-                            <option name="y" value="119" />
+                            <option name="x" value="988" />
+                            <option name="y" value="96" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -35,7 +35,7 @@
                         <option name="myPosition">
                           <Point>
                             <option name="x" value="1103" />
-                            <option name="y" value="392" />
+                            <option name="y" value="447" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -55,8 +55,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="686" />
-                            <option name="y" value="385" />
+                            <option name="x" value="691" />
+                            <option name="y" value="438" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -67,23 +67,35 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="492" />
-                            <option name="y" value="115" />
+                            <option name="x" value="376" />
+                            <option name="y" value="97" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_enterBoardFragment_to_boardFragment">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
                             <entry key="action_enterBoardFragment_to_createBoardFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
                             </entry>
+                            <entry key="action_enterBoardFragment_to_pagesCollectionFragmentAdapter">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="pagesCollectionFragmentAdapter">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="704" />
+                            <option name="y" value="94" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>

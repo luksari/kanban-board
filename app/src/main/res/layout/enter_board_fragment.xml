@@ -78,7 +78,8 @@
                         android:layout_marginTop="15dp"
                         android:padding="10dp"
                         android:textColor="@color/colorPrimary"
-                        android:textColorHint="@color/colorDrawer"/>
+                        android:textColorHint="@color/colorDrawer"
+                        android:text="@={viewModel.boardCode}"/>
                 <TextView
                         android:id="@+id/go_to_create_board"
                         app:layout_constraintTop_toBottomOf="@id/codeEditText"
@@ -94,12 +95,42 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <LinearLayout
+                    android:id="@+id/loader"
+                    app:layout_constraintBottom_toTopOf="@id/bottomElements"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:visibility="@{safeUnbox(viewModel.loaderVisibility)}">
+
+                <com.airbnb.lottie.LottieAnimationView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_fileName="loader2.json"
+                        android:scaleY="0.4"
+                        android:scaleX="0.4"/>
+            </LinearLayout>
+
             <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/bottomElements"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:layout_constraintWidth_percent="0.7"
                     app:layout_constraintStart_toEndOf="@id/guidelineVerTop"
                     app:layout_constraintBottom_toTopOf="@id/guidelineHorBottom">
+                <TextView
+                        android:id="@+id/response_message"
+                        app:layout_constraintBottom_toTopOf="@id/enter_board_button"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:textColor="@color/colorSecondaryLight"
+                        android:layout_marginTop="@dimen/marigin_sign_up_elements"
+                        android:text="@{viewModel.responseMessage}" />
 
                 <Button
                         android:id="@+id/enter_board_button"
@@ -108,7 +139,8 @@
                         android:text="@string/enter_board_button_text"
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:textColor="@color/colorAccent"
-                        android:background="@drawable/rounded_button"/>
+                        android:background="@drawable/rounded_button"
+                        android:onClick="@{() -> viewModel.enterBoard()}"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

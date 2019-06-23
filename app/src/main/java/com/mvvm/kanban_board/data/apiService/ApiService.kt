@@ -23,6 +23,9 @@ interface ApiService {
     @POST("/api/boards/")
     suspend fun postBoardAsync(@Body board: BoardRequest): Response<BoardResponse>
 
+    @GET("/api/boards/")
+    suspend fun getAllBoardsAsync(): Response<List<BoardResponse>>
+
     @POST("/api/verify-token/")
     suspend fun getRefreshTokenAsync(@Body token: TokenResponse): Response<TokenResponse>
 
