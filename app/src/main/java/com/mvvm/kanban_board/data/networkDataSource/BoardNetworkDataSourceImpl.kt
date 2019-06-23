@@ -9,11 +9,19 @@ import com.mvvm.kanban_board.data.apiService.request.UserRequest
 import com.mvvm.kanban_board.data.apiService.response.BoardResponse
 import com.mvvm.kanban_board.data.apiService.response.PageResponse
 import com.mvvm.kanban_board.data.db.entity.User
+import com.mvvm.kanban_board.session.AuthenticationState
 import org.json.JSONObject
 
-class BoardNetworkDataSourceImpl(private val apiUtils: ApiUtils): BoardNetworkDataSource {
+class BoardNetworkDataSourceImpl(
+    private val apiUtils: ApiUtils,
+    private val pageNetworkDataSource: PageNetworkDataSource): BoardNetworkDataSource {
+
 
     private val pagesNames = arrayOf("To do", "In Progress", "Testing", "Done")
+
+    private val _currentBoard = MutableLiveData<BoardResponse>()
+    override val currentBoard: LiveData<BoardResponse>
+        get() = _currentBoard
 
     override suspend fun loadBoards(): List<BoardResponse>? {
         try{
@@ -31,15 +39,15 @@ class BoardNetworkDataSourceImpl(private val apiUtils: ApiUtils): BoardNetworkDa
         var message: String
         try {
             apiUtils.apiService.postBoardAsync(BoardRequest(identifier = identifier, name = name, color = "0", users = listOf(ownerID))).let {
-                if (it.isSuccessful) {
-                    message =  if(addPagesToBoard(it.body()!!.id)){
+                message = if (it.isSuccessful) {
+                    if(addPagesToBoard(it.body()!!.id)){
                         "Your board was created successfully!"
                     }else{
                         "Sorry, server error occurred, try again"
                     }
                 } else {
                     val error = JSONObject(it.errorBody()?.string())
-                    message = if (error.has("identifier")) {
+                    if (error.has("identifier")) {
                         error.getString("identifier").removePrefix("[\"").removeSuffix("\"]")
                     } else {
                         "Sorry, server error occurred, try again"
@@ -52,35 +60,30 @@ class BoardNetworkDataSourceImpl(private val apiUtils: ApiUtils): BoardNetworkDa
         return message
     }
 
-    override suspend fun enterBoard(identifier: String): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override suspend fun enterBoard(identifier: String): String? {
+        loadBoards()?.let{
+            val searched = it.firstOrNull{b  -> b.identifier == identifier}
+            return if(searched == null){
+                "Board with this indetifier does not exist!"
+            } else {
+                _currentBoard.postValue(searched)
+                ""
+            }
+        }
+        return "Server problem occured, check the internet connection"  //need handle the internet connection
     }
 
     private suspend fun addPagesToBoard(boardID: Long): Boolean{
         pagesNames.forEach {
-           if(!addPageToBoard(it, boardID)) return false
+           if(!pageNetworkDataSource.addPageToBoard(it, boardID)) return false
         }
         return true
     }
-    override suspend fun addPageToBoard(name: String, boardID: Long): Boolean {
-        try {
-            apiUtils.apiService.postPageToBoardAsync(PageRequest(name = name, board = boardID)).let {
-                 if (it.isSuccessful)  return true }
-        } catch (e: Exception) { return false}
-        return false
-}
 
-    override suspend fun loadPages(): List<PageResponse>? {
-        try{
-            apiUtils.apiService.getPagesAsync().let{
-                if(it.isSuccessful) return it.body()
-            }
-        }catch(e: Exception){
-            //internet problems?
-        }
+    override suspend fun loadBoardPages(boardID: Long): List<PageResponse>? {
+        pageNetworkDataSource.loadPages()?.let{
+            return it.filter { p -> p.board == boardID }} //should be 4 pages
+                                                         //To do, In Progress, Testing, Done
         return null
     }
-
-
-
 }

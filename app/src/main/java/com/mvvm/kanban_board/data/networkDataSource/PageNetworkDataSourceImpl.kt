@@ -10,23 +10,15 @@ import retrofit2.Response
 
 class PageNetworkDataSourceImpl(private val apiUtils: ApiUtils) : PageNetworkDataSource {
 
-    override suspend fun addPageToBoard(name: String, boardID: Long): PageResponse? {
-        //var message: String
+    override suspend fun addPageToBoard(name: String, boardID: Long): Boolean {
         try {
             apiUtils.apiService.postPageToBoardAsync(PageRequest(name = name, board = boardID)).let {
-                return if(it.isSuccessful) it.body()
-                else null
-                //message = if (it.isSuccessful) { "" }
-               // else { "Sorry, server error occurred, try again" }
-            }
-        } catch (e: Exception) {
-            return null
-            //message = "An error occurred, check the internet connection"
-        }
-        //return message
+                if (it.isSuccessful)  return true }
+        } catch (e: Exception) { return false}
+        return false
     }
 
-    override suspend fun loadBoardPages(): List<PageResponse>? {
+    override suspend fun loadPages(): List<PageResponse>? {
         try{
             apiUtils.apiService.getPagesAsync().let{
                 if(it.isSuccessful) return it.body()
@@ -36,7 +28,5 @@ class PageNetworkDataSourceImpl(private val apiUtils: ApiUtils) : PageNetworkDat
         }
         return null
     }
-
-
 
 }

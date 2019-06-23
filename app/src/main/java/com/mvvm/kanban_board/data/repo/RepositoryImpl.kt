@@ -1,5 +1,6 @@
 package com.mvvm.kanban_board.data.repo
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.mvvm.kanban_board.data.apiService.response.BoardResponse
@@ -15,11 +16,8 @@ import kotlinx.coroutines.delay
 class RepositoryImpl(
     private val kanbanDao: KanbanDao,
     private val userNetworkDataSource: UserNetworkDataSource,
-    private val boardNetworkDataSource: BoardNetworkDataSource,
-    private val pageNetworkDataSource: PageNetworkDataSource,
-    private val taskNetworkDataSource: TaskNetworkDataSource) : Repository {
-
-
+    private val boardNetworkDataSource: BoardNetworkDataSource
+  ) : Repository {
 
     private val _authenticationState = MutableLiveData<AuthenticationState>()
     override val authenticationState: LiveData<AuthenticationState>
@@ -44,30 +42,27 @@ class RepositoryImpl(
     }
 
     override suspend fun createBoard(identifier: String, name: String): String? {
-
-
-
         return boardNetworkDataSource.addBoard(identifier, name, SessionManager.userID!!.toLong())
     }
 
 
     override suspend fun enterBoard(identifier: String): String? {
-        //always refreshing boards when entering another
-        boardNetworkDataSource.loadBoards()?.let {
-            val searched = it.firstOrNull{b  -> b.identifier == identifier}
-            return if(searched == null){
-                "Board with this indetifier does not exist!"
-            } else {
-                _currentBoard.value = searched
-                ""
-            }
+        return boardNetworkDataSource.enterBoard(identifier)
+    }
+
+    override suspend fun loadBoardPages(){
+        val pages = boardNetworkDataSource.loadBoardPages(_currentBoard.value!!.id)
+        pages?.forEach { p ->
+            Log.d("PAGES", p.name)
         }
-        return "Server problem occured, check the internet connection"  //need handle the internet connection
     }
 
    init{
        userNetworkDataSource.authenticationState.observeForever{
            _authenticationState.value = it
+       }
+       boardNetworkDataSource.currentBoard.observeForever {
+           _currentBoard.value = it
        }
    }
 }

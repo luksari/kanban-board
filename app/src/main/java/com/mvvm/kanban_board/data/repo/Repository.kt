@@ -14,7 +14,7 @@ interface Repository {
     suspend fun loginUser(name: String, password: String): String?
     suspend fun createBoard(identifier: String, name: String): String?
     suspend fun enterBoard(identifier: String): String?
-
+    suspend fun loadBoardPages()
     val authenticationState: LiveData<AuthenticationState>
     val currentBoard: LiveData<BoardResponse>
 }
