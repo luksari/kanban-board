@@ -28,11 +28,11 @@ val appModule = module {
     single {ApiUtils}
     single { UserNetworkDataSourceImpl (get()) as UserNetworkDataSource}
     single { BoardNetworkDataSourceImpl (get(), get()) as BoardNetworkDataSource}
-    //not important?
+
     single { TaskNetworkDataSourceImpl (get()) as TaskNetworkDataSource}
     single { PageNetworkDataSourceImpl (get()) as PageNetworkDataSource}
-    //
-    single { RepositoryImpl(get(), get(), get()) as Repository }
+
+    single { RepositoryImpl(get(), get(), get(), get(), get()) as Repository }
     single { KanbanDatabase.buildDatabase(androidApplication())}
     single { get<KanbanDatabase>().kanbanDao() }
 

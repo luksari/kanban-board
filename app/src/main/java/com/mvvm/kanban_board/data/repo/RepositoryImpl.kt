@@ -10,14 +10,19 @@ import com.mvvm.kanban_board.data.db.entity.BoardsResponse
 import com.mvvm.kanban_board.data.networkDataSource.*
 import com.mvvm.kanban_board.session.AuthenticationState
 import com.mvvm.kanban_board.session.SessionManager
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class RepositoryImpl(
     private val kanbanDao: KanbanDao,
     private val userNetworkDataSource: UserNetworkDataSource,
-    private val boardNetworkDataSource: BoardNetworkDataSource
+    private val boardNetworkDataSource: BoardNetworkDataSource,
+    private val pageNetworkDataSource: PageNetworkDataSource,
+    private val taskNetworkDataSource: TaskNetworkDataSource
   ) : Repository {
+
 
     private val _authenticationState = MutableLiveData<AuthenticationState>()
     override val authenticationState: LiveData<AuthenticationState>
@@ -30,7 +35,6 @@ class RepositoryImpl(
 
     init{
         // currentBoard.observeForever {  } -> here change in room
-
     }
 
     override suspend fun registerNewUser(name: String, password: String): String {
@@ -51,18 +55,34 @@ class RepositoryImpl(
     }
 
     override suspend fun loadBoardPages(){
-        val pages = boardNetworkDataSource.loadBoardPages(_currentBoard.value!!.id)
+        val pages = pageNetworkDataSource.loadBoardPages(_currentBoard.value!!.id)
         pages?.forEach { p ->
             Log.d("PAGES", p.name)
         }
     }
 
+    override suspend fun addTaskToPage(name: String, ownerID: Long, description: String, pageID: Long): String? {
+       return taskNetworkDataSource.addTaskToPage(name, ownerID, description, pageID)
+    }
+
+    override suspend fun loadPageTasks(pageID: Long) {
+        val pageTasks = taskNetworkDataSource.loadPageTasks(pageID)
+        Log.d("TASKS", "Displaying page's tasks if exist")
+        pageTasks?.forEach { t ->
+            Log.d("TASKS", t.id.toString() + ": "+ t.name)
+        }
+    }
    init{
        userNetworkDataSource.authenticationState.observeForever{
            _authenticationState.value = it
        }
        boardNetworkDataSource.currentBoard.observeForever {
            _currentBoard.value = it
+       }
+
+       GlobalScope.launch {
+          // addTaskToPage("zadanie 1", 1, "pageID 1, ownerID 1", 1 )
+           //loadPageTasks(2)
        }
    }
 }

@@ -18,7 +18,7 @@ class PageNetworkDataSourceImpl(private val apiUtils: ApiUtils) : PageNetworkDat
         return false
     }
 
-    override suspend fun loadPages(): List<PageResponse>? {
+    override suspend fun loadAllPages(): List<PageResponse>? {
         try{
             apiUtils.apiService.getPagesAsync().let{
                 if(it.isSuccessful) return it.body()
@@ -26,6 +26,12 @@ class PageNetworkDataSourceImpl(private val apiUtils: ApiUtils) : PageNetworkDat
         }catch(e: Exception){
             //internet problems?
         }
+        return null
+    }
+
+    override suspend fun loadBoardPages(boardID: Long): List<PageResponse>? {
+        loadAllPages()?.let{
+            return it.filter { p -> p.board == boardID }}
         return null
     }
 

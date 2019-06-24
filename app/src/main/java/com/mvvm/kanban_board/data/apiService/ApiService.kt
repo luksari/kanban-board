@@ -32,11 +32,16 @@ interface ApiService {
     @POST("/api/pages/")
     suspend fun postPageToBoardAsync(@Body page: PageRequest): Response<PageResponse>
 
-    @GET("/api/tasks")
-    suspend fun getPageTasksAsync(): Response<List<TaskResponse>>
+    @GET("/api/tasks/")
+    suspend fun getAllTasksAsync(): Response<List<TaskResponse>>
 
-    @POST("/api/pages/")
+    @POST("/api/tasks/")
     suspend fun postTaskToPageAsync(@Body task: TaskRequest): Response<TaskResponse>
+
+    //put task, delete task
+
+
+
 
     @POST("/api/verify-token/")
     suspend fun getRefreshTokenAsync(@Body token: TokenResponse): Response<TokenResponse>
@@ -45,7 +50,7 @@ interface ApiService {
 
 
     //need authentication
-    @GET("/api/users")
+    @GET("/api/users/")
     suspend fun getAllUsersAsync():Response <List<UserRegisterResponse>>
 
 }

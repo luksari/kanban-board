@@ -13,7 +13,6 @@ interface BoardNetworkDataSource {
     suspend fun enterBoard(identifier: String) : String?
     suspend fun loadBoards(): List<BoardResponse>?
 
-    suspend fun loadBoardPages(boardID: Long): List<PageResponse>?
     val currentBoard: LiveData<BoardResponse>
 
 }

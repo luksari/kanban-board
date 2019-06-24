@@ -15,6 +15,10 @@ interface Repository {
     suspend fun createBoard(identifier: String, name: String): String?
     suspend fun enterBoard(identifier: String): String?
     suspend fun loadBoardPages()
+
+    suspend fun addTaskToPage(name: String, ownerID: Long, description: String, pageID: Long): String?
+    suspend fun loadPageTasks(pageID: Long)
+
     val authenticationState: LiveData<AuthenticationState>
     val currentBoard: LiveData<BoardResponse>
 }
