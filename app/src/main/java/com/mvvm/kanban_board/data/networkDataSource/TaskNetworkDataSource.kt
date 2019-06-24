@@ -8,5 +8,7 @@ interface TaskNetworkDataSource {
     suspend fun addTaskToPage(name: String, ownerID: Long, description: String, pageID: Long): String
     suspend fun loadAllTasks(): List<TaskResponse>?
     suspend fun loadPageTasks(pageID: Long): List<TaskResponse>?
+    suspend fun deleteTasks(taskID: Long): String?
+    suspend fun editTasks(taskID: Long, name: String, ownerID: Long, description: String, pageID: Long): String?
 
 }

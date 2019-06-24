@@ -2,8 +2,34 @@ package com.mvvm.kanban_board.data.networkDataSource
 import com.mvvm.kanban_board.data.apiService.ApiUtils
 import com.mvvm.kanban_board.data.apiService.request.TaskRequest
 import com.mvvm.kanban_board.data.apiService.response.TaskResponse
+import org.json.JSONObject
 
 class TaskNetworkDataSourceImpl(private val apiUtils: ApiUtils) : TaskNetworkDataSource {
+    override suspend fun deleteTasks(taskID: Long): String? {
+        var message = ""
+        try{
+            apiUtils.apiService.deleteTask(taskID.toString()).let {
+                message = if (it.isSuccessful) {
+                    "Task deleted succesfully"
+                } else {
+                    "Server error occurred, refresh board and try again" //task was not found
+                }
+            }
+        }catch (e: Exception) {
+            message = "An error occurred, check the internet connection"
+        }
+        return message
+    }
+
+    override suspend fun editTasks(
+        taskID: Long,
+        name: String,
+        ownerID: Long,
+        description: String,
+        pageID: Long
+    ): String? {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     override suspend fun addTaskToPage(name: String, ownerID: Long, description: String, pageID: Long): String {
         var message: String

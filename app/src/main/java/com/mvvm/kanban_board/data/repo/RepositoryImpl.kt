@@ -72,6 +72,21 @@ class RepositoryImpl(
             Log.d("TASKS", t.id.toString() + ": "+ t.name)
         }
     }
+
+    //FIRSTLY CHECK IF THE TASK EXIST/IS NOT CHANGED
+    override suspend fun deleteTask(taskID: Long): String? {
+        return taskNetworkDataSource.deleteTasks(taskID)
+    }
+
+    override suspend fun editTask(
+        taskID: Long,
+        name: String,
+        ownerID: Long,
+        description: String,
+        pageID: Long
+    ): String? {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
    init{
        userNetworkDataSource.authenticationState.observeForever{
            _authenticationState.value = it
@@ -81,8 +96,7 @@ class RepositoryImpl(
        }
 
        GlobalScope.launch {
-          // addTaskToPage("zadanie 1", 1, "pageID 1, ownerID 1", 1 )
-           //loadPageTasks(2)
+           Log.d("TASK", deleteTask(6))
        }
    }
 }

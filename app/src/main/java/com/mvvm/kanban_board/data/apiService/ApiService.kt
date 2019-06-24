@@ -6,9 +6,7 @@ import com.mvvm.kanban_board.data.apiService.request.TaskRequest
 import com.mvvm.kanban_board.data.apiService.request.UserRequest
 import com.mvvm.kanban_board.data.apiService.response.*
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -37,6 +35,12 @@ interface ApiService {
 
     @POST("/api/tasks/")
     suspend fun postTaskToPageAsync(@Body task: TaskRequest): Response<TaskResponse>
+
+    @PUT("/api/tasks/{id}/")
+    suspend fun editTask(@Path("id") taskID: String, @Body task: TaskRequest): Response<TaskResponse>
+
+    @DELETE("/api/tasks/{id}/")
+    suspend fun deleteTask(@Path("id") taskID: String): Response<TaskResponse>
 
     //put task, delete task
 
