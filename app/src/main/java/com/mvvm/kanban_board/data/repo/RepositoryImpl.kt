@@ -85,18 +85,18 @@ class RepositoryImpl(
         description: String,
         pageID: Long
     ): String? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return taskNetworkDataSource.editTasks(taskID, name, ownerID, description, pageID)
     }
-   init{
-       userNetworkDataSource.authenticationState.observeForever{
+
+    override suspend fun loadTask(taskID: Long) {
+        taskNetworkDataSource.loadTask(taskID)
+    }
+   init {
+       userNetworkDataSource.authenticationState.observeForever {
            _authenticationState.value = it
        }
        boardNetworkDataSource.currentBoard.observeForever {
            _currentBoard.value = it
-       }
-
-       GlobalScope.launch {
-           Log.d("TASK", deleteTask(6))
        }
    }
 }

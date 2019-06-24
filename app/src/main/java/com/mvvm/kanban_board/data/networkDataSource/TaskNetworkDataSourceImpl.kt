@@ -8,7 +8,7 @@ class TaskNetworkDataSourceImpl(private val apiUtils: ApiUtils) : TaskNetworkDat
     override suspend fun deleteTasks(taskID: Long): String? {
         var message = ""
         try{
-            apiUtils.apiService.deleteTask(taskID.toString()).let {
+            apiUtils.apiService.deleteTaskAsync(taskID.toString()).let {
                 message = if (it.isSuccessful) {
                     "Task deleted succesfully"
                 } else {
@@ -28,7 +28,21 @@ class TaskNetworkDataSourceImpl(private val apiUtils: ApiUtils) : TaskNetworkDat
         description: String,
         pageID: Long
     ): String? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        var message: String
+        try{
+            val updatedTask = TaskRequest(name = name, user = ownerID, description = description, page = pageID)
+            apiUtils.apiService.editTaskAsync(taskID = taskID.toString(), task = updatedTask ).let{
+                message = if (it.isSuccessful) {
+                    "Task saved!"
+                } else {
+                    "Sorry, server error occurred, try again"  //task not found
+                }
+            }
+        } catch (e: Exception) {
+            message = "An error occurred, check the internet connection"
+        }
+        return message
+
     }
 
     override suspend fun addTaskToPage(name: String, ownerID: Long, description: String, pageID: Long): String {
@@ -55,6 +69,13 @@ class TaskNetworkDataSourceImpl(private val apiUtils: ApiUtils) : TaskNetworkDat
         }catch(e: Exception){
             //internet problems?
         }
+        return null
+    }
+
+    override suspend fun loadTask(taskID: Long): TaskResponse? {
+            loadAllTasks()?.let{
+                return it.first { t -> t.id == taskID }
+            }
         return null
     }
 

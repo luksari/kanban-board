@@ -37,10 +37,10 @@ interface ApiService {
     suspend fun postTaskToPageAsync(@Body task: TaskRequest): Response<TaskResponse>
 
     @PUT("/api/tasks/{id}/")
-    suspend fun editTask(@Path("id") taskID: String, @Body task: TaskRequest): Response<TaskResponse>
+    suspend fun editTaskAsync(@Path("id") taskID: String, @Body task: TaskRequest): Response<TaskResponse>
 
     @DELETE("/api/tasks/{id}/")
-    suspend fun deleteTask(@Path("id") taskID: String): Response<TaskResponse>
+    suspend fun deleteTaskAsync(@Path("id") taskID: String): Response<TaskResponse>
 
     //put task, delete task
 

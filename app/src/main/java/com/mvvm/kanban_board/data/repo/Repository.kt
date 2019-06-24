@@ -20,6 +20,7 @@ interface Repository {
     suspend fun loadPageTasks(pageID: Long)
     suspend fun deleteTask(taskID: Long): String?
     suspend fun editTask(taskID: Long, name: String, ownerID: Long, description: String, pageID: Long): String?
+    suspend fun loadTask(taskID: Long)
 
     val authenticationState: LiveData<AuthenticationState>
     val currentBoard: LiveData<BoardResponse>
