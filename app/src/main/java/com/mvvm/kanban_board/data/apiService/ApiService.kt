@@ -14,7 +14,7 @@ interface ApiService {
 
     //New support suspend modifier in Retrofit 2.6
     //Currently this integration only supports non-null response body types
-    @POST("/api/users")
+    @POST("/api/users/")
     suspend fun postUserAsync(@Body user: UserRequest): Response<UserRegisterResponse>
 
     @POST("/api/obtain-token/")
