@@ -42,16 +42,9 @@ interface ApiService {
     @DELETE("/api/tasks/{id}/")
     suspend fun deleteTaskAsync(@Path("id") taskID: String): Response<TaskResponse>
 
-    //put task, delete task
-
-
-
 
     @POST("/api/verify-token/")
     suspend fun getRefreshTokenAsync(@Body token: TokenResponse): Response<TokenResponse>
-
-
-
 
     //need authentication
     @GET("/api/users/")

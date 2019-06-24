@@ -1,8 +1,0 @@
-{
-  "users": [
-    {"id_u": 0, "name": "Justyna","password": "2137"},
-    {"id_u": 1, "name": "Łukasz","password": "2137"},
-    {"id_u": 2, "name": "Artur","password": "2137"},
-    {"id_u": 3, "name": "Michał","password": "2137"},
-  ]
-}
