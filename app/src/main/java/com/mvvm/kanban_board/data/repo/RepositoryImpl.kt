@@ -55,7 +55,7 @@ class RepositoryImpl(
     }
 
     override suspend fun loadBoardPages(){
-        val pages = pageNetworkDataSource.loadBoardPages(_currentBoard.value!!.id)
+        val pages = pageNetworkDataSource.loadBoardPages(16)//_currentBoard.value!!.id)
         pages?.forEach { p ->
             Log.d("PAGES", p.name)
         }
