@@ -18,8 +18,8 @@
               android:label="enter_board_fragment" tools:layout="@layout/enter_board_fragment">
         <action android:id="@+id/action_enterBoardFragment_to_createBoardFragment"
                 app:destination="@id/createBoardFragment"/>
-        <action android:id="@+id/action_enterBoardFragment_to_pagesCollectionFragmentAdapter"
-                app:destination="@id/pagesCollectionFragmentAdapter"/>
+        <action android:id="@+id/action_enterBoardFragment_to_topBarWithPagesFragment"
+                app:destination="@id/topBarWithPagesFragment"/>
     </fragment>
     <fragment android:id="@+id/createBoardFragment"
               android:name="com.mvvm.kanban_board.view.create_board.CreateBoardFragment"
@@ -34,8 +34,8 @@
               android:label="card_details_fragment" tools:layout="@layout/card_details_fragment">
         <action android:id="@+id/action_cardDetailsFragment_to_boardFragment" app:destination="@id/boardFragment"/>
     </fragment>
-    <fragment android:id="@+id/pagesCollectionFragmentAdapter"
-              android:name="com.mvvm.kanban_board.view.board.pages_tab_layout.PagesCollectionFragmentAdapter"
-              android:label="pages_bar_fragment" tools:layout="@layout/pages_bar_fragment"/>
+    <fragment android:id="@+id/topBarWithPagesFragment"
+              android:name="com.mvvm.kanban_board.view.top_bar.TopBarWithPagesFragment"
+              android:label="TopBarWithPagesFragment"/>
 
 </navigation>

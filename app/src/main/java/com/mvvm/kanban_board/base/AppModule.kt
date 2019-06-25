@@ -13,9 +13,7 @@ import com.mvvm.kanban_board.view.enter_board.EnterBoardViewModel
 import com.mvvm.kanban_board.view.MainActivityViewModel
 import com.mvvm.kanban_board.view.sign_in.SignInViewModel
 import com.mvvm.kanban_board.view.sign_up.SignUpViewModel
-import com.mvvm.kanban_board.view.top_bar.action_bar.ActionBarViewModel
-import com.mvvm.kanban_board.view.board.pages_tab_layout.PagesBarViewModel
-import com.mvvm.kanban_board.view.top_bar.TopBarViewModel
+import com.mvvm.kanban_board.view.top_bar.TopBarWithPagesViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -41,9 +39,7 @@ val appModule = module {
     viewModel { CreateBoardViewModel(get()) }
     viewModel { SignInViewModel(get()) }
     viewModel { SignUpViewModel(get()) }
-    viewModel { ActionBarViewModel(get()) }
-    viewModel { PagesBarViewModel(get()) }
-    viewModel { TopBarViewModel(get()) }
+    viewModel { TopBarWithPagesViewModel(get()) }
 
 
 
