@@ -67,8 +67,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="376" />
-                            <option name="y" value="97" />
+                            <option name="x" value="391" />
+                            <option name="y" value="130" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -78,7 +78,7 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
-                            <entry key="action_enterBoardFragment_to_pagesCollectionFragmentAdapter">
+                            <entry key="action_enterBoardFragment_to_topBarWithPagesFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -88,25 +88,13 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="pagesCollectionFragmentAdapter">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="704" />
-                            <option name="y" value="94" />
-                          </Point>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
                   <entry key="signInFragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-104" />
-                            <option name="y" value="345" />
+                            <option name="x" value="122" />
+                            <option name="y" value="458" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -143,6 +131,18 @@
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="topBarWithPagesFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="699" />
+                            <option name="y" value="114" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>

@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
-            app:startDestination="@id/signInFragment">
+            app:startDestination="@id/signUpFragment">
 
     <fragment android:id="@+id/signUpFragment" android:name="com.mvvm.kanban_board.view.sign_up.SignUpFragment"
               android:label="sign_up_fragment" tools:layout="@layout/sign_up_fragment">
@@ -18,7 +18,8 @@
               android:label="enter_board_fragment" tools:layout="@layout/enter_board_fragment">
         <action android:id="@+id/action_enterBoardFragment_to_createBoardFragment"
                 app:destination="@id/createBoardFragment"/>
-        <action android:id="@+id/action_enterBoardFragment_to_boardFragment" app:destination="@id/boardFragment"/>
+        <action android:id="@+id/action_enterBoardFragment_to_topBarWithPagesFragment"
+                app:destination="@id/topBarWithPagesFragment"/>
     </fragment>
     <fragment android:id="@+id/createBoardFragment"
               android:name="com.mvvm.kanban_board.view.create_board.CreateBoardFragment"
@@ -33,5 +34,8 @@
               android:label="card_details_fragment" tools:layout="@layout/card_details_fragment">
         <action android:id="@+id/action_cardDetailsFragment_to_boardFragment" app:destination="@id/boardFragment"/>
     </fragment>
+    <fragment android:id="@+id/topBarWithPagesFragment"
+              android:name="com.mvvm.kanban_board.view.top_bar.TopBarWithPagesFragment"
+              android:label="TopBarWithPagesFragment"/>
 
 </navigation>
