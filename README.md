@@ -1,5 +1,5 @@
 <p align="center">
- <img src="https://raw.githubusercontent.com/luksari/kanban-board/development/logo.png" width="235">
+ <img src="https://raw.githubusercontent.com/luksari/kanban-board/development/kanban.png" width="235">
 </p>
 
 # Kanban Board
