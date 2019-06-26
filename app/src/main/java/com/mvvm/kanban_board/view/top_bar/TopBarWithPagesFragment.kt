@@ -44,5 +44,4 @@ class TopBarWithPagesFragment : Fragment() {
         tabLayout.setupWithViewPager(viewPager)
         super.onViewCreated(view, savedInstanceState)
     }
-
 }

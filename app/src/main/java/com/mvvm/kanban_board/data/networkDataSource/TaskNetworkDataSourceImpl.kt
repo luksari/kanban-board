@@ -1,4 +1,6 @@
 package com.mvvm.kanban_board.data.networkDataSource
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.mvvm.kanban_board.data.apiService.ApiUtils
 import com.mvvm.kanban_board.data.apiService.request.TaskRequest
 import com.mvvm.kanban_board.data.apiService.response.TaskResponse
@@ -79,11 +81,13 @@ class TaskNetworkDataSourceImpl(private val apiUtils: ApiUtils) : TaskNetworkDat
         return null
     }
 
-    override suspend fun loadPageTasks(pageID: Long): List<TaskResponse>? {
+    override suspend fun loadPageTasks(pageID: Long?): List<TaskResponse>? {
         loadAllTasks()?.let{
-            return it.filter { t -> t.page == pageID }}
+            //return
+            return  it.filter { t -> t.page == pageID } }
         return null
     }
+
 
 }
 

@@ -3,6 +3,8 @@ package com.mvvm.kanban_board.data.repo
 import android.content.Context
 import androidx.lifecycle.LiveData
 import com.mvvm.kanban_board.data.apiService.response.BoardResponse
+import com.mvvm.kanban_board.data.apiService.response.PageResponse
+import com.mvvm.kanban_board.data.apiService.response.TaskResponse
 import com.mvvm.kanban_board.data.db.entity.Board
 import com.mvvm.kanban_board.data.db.entity.User
 import com.mvvm.kanban_board.session.AuthenticationState
@@ -17,11 +19,13 @@ interface Repository {
     suspend fun loadBoardPages()
 
     suspend fun addTaskToPage(name: String, ownerID: Long, description: String, pageID: Long): String?
-    suspend fun loadPageTasks(pageID: Long)
+    suspend fun loadPageTasks(pageName: String): List<TaskResponse>?
+
     suspend fun deleteTask(taskID: Long): String?
     suspend fun editTask(taskID: Long, name: String, ownerID: Long, description: String, pageID: Long): String?
     suspend fun loadTask(taskID: Long)
 
     val authenticationState: LiveData<AuthenticationState>
     val currentBoard: LiveData<BoardResponse>
+    val currentBoardPages: LiveData<List<PageResponse>>
 }

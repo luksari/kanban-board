@@ -14,6 +14,8 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class BoardFragment : Fragment() {
 
+    var currentPageName: String = ""
+
     companion object {
         fun newInstance() = BoardFragment()
     }
@@ -27,10 +29,21 @@ class BoardFragment : Fragment() {
         val binding : BoardFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.board_fragment, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+
+        loadUI()
+
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
     }
+
+    private fun loadUI(){
+        viewModel.loadPages(currentPageName)
+    }
+
+
+
 }

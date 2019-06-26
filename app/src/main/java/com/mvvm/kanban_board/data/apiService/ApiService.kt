@@ -1,5 +1,7 @@
 package com.mvvm.kanban_board.data.apiService
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.mvvm.kanban_board.data.apiService.request.BoardRequest
 import com.mvvm.kanban_board.data.apiService.request.PageRequest
 import com.mvvm.kanban_board.data.apiService.request.TaskRequest
@@ -31,7 +33,7 @@ interface ApiService {
     suspend fun postPageToBoardAsync(@Body page: PageRequest): Response<PageResponse>
 
     @GET("/api/tasks/")
-    suspend fun getAllTasksAsync(): Response<List<TaskResponse>>
+    suspend fun getAllTasksAsync(): Response<List<TaskResponse>> //Response<MutableLiveData<List<TaskResponse>>>
 
     @POST("/api/tasks/")
     suspend fun postTaskToPageAsync(@Body task: TaskRequest): Response<TaskResponse>

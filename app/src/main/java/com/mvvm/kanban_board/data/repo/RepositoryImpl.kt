@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.mvvm.kanban_board.data.apiService.response.BoardResponse
+import com.mvvm.kanban_board.data.apiService.response.PageResponse
+import com.mvvm.kanban_board.data.apiService.response.TaskResponse
 import com.mvvm.kanban_board.data.db.KanbanDao
 import com.mvvm.kanban_board.data.db.entity.Board
 import com.mvvm.kanban_board.data.db.entity.BoardsResponse
@@ -33,6 +35,11 @@ class RepositoryImpl(
     override val currentBoard: LiveData<BoardResponse>
         get() = _currentBoard
 
+    private val _currentBoardPages = MutableLiveData<List<PageResponse>>()
+    override val currentBoardPages: LiveData<List<PageResponse>>
+        get() = _currentBoardPages
+
+
     init{
         // currentBoard.observeForever {  } -> here change in room
     }
@@ -51,26 +58,27 @@ class RepositoryImpl(
 
 
     override suspend fun enterBoard(identifier: String): String? {
+        //load board pages here! to get ids
         return boardNetworkDataSource.enterBoard(identifier)
     }
 
     override suspend fun loadBoardPages(){
-        val pages = pageNetworkDataSource.loadBoardPages(16)//_currentBoard.value!!.id)
-        pages?.forEach { p ->
-            Log.d("PAGES", p.name)
-        }
+//        val pages = pageNetworkDataSource.loadBoardPages(16)//_currentBoard.value!!.id)
+//        pages?.forEach { p ->
+//            Log.d("PAGES", p.name)
+//        }
+       _currentBoardPages.value = pageNetworkDataSource.loadBoardPages(16)
+        // _currentBoard.value!!.id after enter bard
     }
 
     override suspend fun addTaskToPage(name: String, ownerID: Long, description: String, pageID: Long): String? {
        return taskNetworkDataSource.addTaskToPage(name, ownerID, description, pageID)
     }
 
-    override suspend fun loadPageTasks(pageID: Long) {
-        val pageTasks = taskNetworkDataSource.loadPageTasks(pageID)
-        Log.d("TASKS", "Displaying page's tasks if exist")
-        pageTasks?.forEach { t ->
-            Log.d("TASKS", t.id.toString() + ": "+ t.name)
-        }
+    override suspend fun loadPageTasks(pageName: String): List<TaskResponse>?{
+        loadBoardPages()
+        val id = _currentBoardPages.value?.first { p -> p.name == pageName }?.id
+        return taskNetworkDataSource.loadPageTasks(id)
     }
 
     //FIRSTLY CHECK IF THE TASK EXIST/IS NOT CHANGED
@@ -91,6 +99,8 @@ class RepositoryImpl(
     override suspend fun loadTask(taskID: Long) {
         taskNetworkDataSource.loadTask(taskID)
     }
+
+
    init {
        userNetworkDataSource.authenticationState.observeForever {
            _authenticationState.value = it
