@@ -14,5 +14,4 @@
             android:textColor="@color/cardview_light_background"
             android:paddingVertical="10dp"
             android:paddingHorizontal="25dp" />
-
 </androidx.cardview.widget.CardView>

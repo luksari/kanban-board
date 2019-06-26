@@ -77,11 +77,13 @@
                     android:textColorHint="@color/colorDrawer"/>
             <EditText
                     android:id="@+id/passwordEditText"
+                    android:inputType="textPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/loginEditText"
                     android:hint="@string/password_hint"
+                    android:textColorHint="@color/colorAccent"
                     android:text="@={viewModel.password}"
                     android:background="@drawable/top_rounded_edittext"
                     android:layout_marginTop="@dimen/marigin_sign_up_edittext"
