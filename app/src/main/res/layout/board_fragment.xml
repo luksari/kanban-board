@@ -62,23 +62,23 @@
               app:layout_constraintTop_toBottomOf="@id/guidelineHorTop1"
               android:background="@drawable/table_background_bar"/>
 
-        <include
-                layout="@layout/activities_list_fragment"
-                android:id="@+id/activities_list"
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/card_list"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 app:layout_constraintWidth_percent="0.6"
                 app:layout_constraintHeight_percent="0.05"
                 app:layout_constraintStart_toEndOf="@id/guidelineVerTop2"
-                app:layout_constraintTop_toBottomOf="@id/guidelineHorTop2"/>
-
+                app:layout_constraintTop_toBottomOf="@id/guidelineHorTop2"
+                app:setAdapter="@{viewModel.getAdapter()}"
+        />
         <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintWidth_percent="0.6"
                 app:layout_constraintHeight_percent="0.05"
                 app:layout_constraintStart_toEndOf="@id/guidelineVerTop2"
-                app:layout_constraintTop_toBottomOf="@id/activities_list"
+                app:layout_constraintTop_toBottomOf="@id/card_list"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/button_add"
                 android:text="@string/add"

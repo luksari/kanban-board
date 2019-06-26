@@ -7,15 +7,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.mvvm.kanban_board.R
 import com.mvvm.kanban_board.data.apiService.response.TaskResponse
-import com.mvvm.kanban_board.data.db.entity.Board
-import com.mvvm.kanban_board.data.db.entity.Card
 import com.mvvm.kanban_board.databinding.TaskListItemBinding
 
 class TaskListAdapter(@LayoutRes private val layoutId: Int, private val boardViewModel : BoardViewModel) :
     RecyclerView.Adapter<TaskListAdapter.TaskViewHolder>() {
     private var cards : List<TaskResponse>? = boardViewModel.pageTasks.value
 
-    private fun setCards(cards: List<TaskResponse>) {
+    fun setCards(cards: List<TaskResponse>) {
         this.cards = cards
     }
 
