@@ -5,16 +5,11 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import com.mvvm.kanban_board.view.board.BoardFragment
+import com.mvvm.kanban_board.view.board_fragment.BoardFragment
 
-class PagesPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm){
-
-
-    //override fun getItem(position: Int): Fragment = BoardFragment()
-
+class PagesPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT){
 
     override fun getItem(position: Int): Fragment {
-
         val args = Bundle()
         val name = getPageTitle(position).toString()
         val instance =  BoardFragment()

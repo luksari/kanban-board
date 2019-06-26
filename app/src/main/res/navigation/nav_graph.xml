@@ -24,7 +24,7 @@
     <fragment android:id="@+id/createBoardFragment"
               android:name="com.mvvm.kanban_board.view.create_board.CreateBoardFragment"
               android:label="create_board_fragment" tools:layout="@layout/create_board_fragment"/>
-    <fragment android:id="@+id/boardFragment" android:name="com.mvvm.kanban_board.view.board.BoardFragment"
+    <fragment android:id="@+id/boardFragment" android:name="com.mvvm.kanban_board.view.board_fragment.BoardFragment"
               android:label="board_fragment" tools:layout="@layout/board_fragment">
         <action android:id="@+id/action_boardFragment_to_cardDetailsFragment"
                 app:destination="@id/cardDetailsFragment"/>

@@ -2,12 +2,11 @@
 <layout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context="com.mvvm.kanban_board.view.board_fragment.BoardFragment">
     <data>
-        <variable name="viewModel" type="com.mvvm.kanban_board.view.board.BoardViewModel"/>
+        <variable name="viewModel" type="com.mvvm.kanban_board.view.board_fragment.BoardViewModel"/>
     </data>
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -23,20 +22,20 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineHorTop1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.2"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+                android:id="@+id/guidelineHorTop1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.1"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
 
         <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guidelineHorTop2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.25"
+                app:layout_constraintGuide_percent="0.14"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
         <androidx.constraintlayout.widget.Guideline
@@ -82,15 +81,9 @@
                 app:layout_constraintTop_toBottomOf="@id/activities_list"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/button_add"
-                android:text="@{viewModel.currentPage}"
+                android:text="@string/add"
                 android:textColor="#fff"
                 android:textStyle="bold"
                 android:textSize="16sp"/>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
 </layout>

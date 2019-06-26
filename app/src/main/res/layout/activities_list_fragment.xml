@@ -5,12 +5,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <!--<androidx.recyclerview.widget.RecyclerView-->
-            <!--android:id="@+id/activitiesList"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">-->
-
-    <!--</androidx.recyclerview.widget.RecyclerView>-->
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/activitiesList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+    </androidx.recyclerview.widget.RecyclerView>
 
 </FrameLayout>

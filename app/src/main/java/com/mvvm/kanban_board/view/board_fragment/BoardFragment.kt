@@ -1,4 +1,4 @@
-package com.mvvm.kanban_board.view.board
+package com.mvvm.kanban_board.view.board_fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +9,6 @@ import androidx.databinding.DataBindingUtil
 
 import com.mvvm.kanban_board.R
 import com.mvvm.kanban_board.databinding.BoardFragmentBinding
-import com.mvvm.kanban_board.databinding.SignInFragmentBinding
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class BoardFragment : Fragment() {

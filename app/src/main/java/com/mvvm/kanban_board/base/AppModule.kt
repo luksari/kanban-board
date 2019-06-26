@@ -3,7 +3,7 @@ import com.mvvm.kanban_board.data.repo.Repository
 import com.mvvm.kanban_board.data.repo.RepositoryImpl
 import com.mvvm.kanban_board.data.db.KanbanDatabase
 import com.mvvm.kanban_board.data.networkDataSource.*
-import com.mvvm.kanban_board.view.board.BoardViewModel
+import com.mvvm.kanban_board.view.board_fragment.BoardViewModel
 import com.mvvm.kanban_board.view.card_details.CardDetailsViewModel
 import com.mvvm.kanban_board.view.create_board.CreateBoardViewModel
 import com.mvvm.kanban_board.view.enter_board.EnterBoardViewModel
