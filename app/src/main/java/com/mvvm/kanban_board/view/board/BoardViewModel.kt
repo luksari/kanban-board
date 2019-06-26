@@ -57,7 +57,7 @@ class BoardViewModel(private val repository: Repository) : ViewModel() {
         }
     }
 
-
+//
 //    //only to test
 //    private val _currentPage: MutableLiveData<String> = MutableLiveData("ADD")
 //    val currentPage: LiveData<String>
