@@ -2,6 +2,7 @@ package com.mvvm.kanban_board.data.repo
 
 import android.content.Context
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.mvvm.kanban_board.data.apiService.response.BoardResponse
 import com.mvvm.kanban_board.data.apiService.response.PageResponse
 import com.mvvm.kanban_board.data.apiService.response.TaskResponse
@@ -18,6 +19,7 @@ interface Repository {
     suspend fun enterBoard(identifier: String): String?
     suspend fun loadBoardPages()
 
+    suspend fun addTaskToPage(pageName :String): String?
     suspend fun addTaskToPage(name: String, ownerID: Long, description: String, pageID: Long): String?
     suspend fun loadPageTasks(pageName: String): List<TaskResponse>?
 
@@ -28,4 +30,5 @@ interface Repository {
     val authenticationState: LiveData<AuthenticationState>
     val currentBoard: LiveData<BoardResponse>
     val currentBoardPages: LiveData<List<PageResponse>>
+    val selectedTaskID: MutableLiveData<Long>
 }

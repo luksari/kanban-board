@@ -49,4 +49,7 @@
     <string name="token"/>
     <string name="add">ADD</string>
     <string name="logout">Logout</string>
+    <string name="name_card_hint">Task name...</string>
+    <string name="exit_board">exit board</string>
+    <string name="refresh_board">refresh board</string>
 </resources>

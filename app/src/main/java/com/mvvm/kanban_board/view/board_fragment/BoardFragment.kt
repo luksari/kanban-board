@@ -7,9 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-
+import androidx.navigation.fragment.findNavController
 import com.mvvm.kanban_board.R
 import com.mvvm.kanban_board.databinding.BoardFragmentBinding
+import com.mvvm.kanban_board.session.AuthenticationState
+import kotlinx.android.synthetic.main.board_fragment.*
+import kotlinx.android.synthetic.main.task_list_item.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class BoardFragment : Fragment() {
@@ -30,26 +33,40 @@ class BoardFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        loadUI()
+
 
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        loadUI()
 
     }
 
     private fun loadUI(){
         viewModel.loadPages(currentPageName)
         setupListUpdate()
+        setupListeners()
     }
 
     private fun setupListUpdate(){
+        //val navController = findNavController()
         viewModel.pageTasks.observe(this, Observer {
                 tasks-> if(tasks.isNotEmpty())
             viewModel.setAdapter(tasks)
         })
+    }
+
+    private fun setupListeners(){
+        val navController = findNavController()
+
+        add_task_button.setOnClickListener {
+            navController.navigate(R.id.cardDetailsFragment)
+            viewModel.addTaskToPage(currentPageName)
+        }
+        viewModel.selectedTaskID.observe(viewLifecycleOwner, Observer {
+            navController.navigate(R.id.cardDetailsFragment) })
     }
 
 

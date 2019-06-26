@@ -42,15 +42,25 @@ class BoardViewModel(private val repository: Repository) : ViewModel() {
             //for testing loading pages
             viewModelScope.launch {
                 _pageTasks.value = repository.loadPageTasks(name)
+                Log.d("TASKS", _pageTasks.value?.size.toString())
             }
         }
     }
 
-    fun addTaskToPage(){
-        viewModelScope.launch {
-            //repository.addTaskToPage(databinding, shared, pagename)
+    fun selectTask(taskID: Long){
+        repository.selectedTaskID.value = taskID
+        _selectedTaskID.value = taskID
+    }
+    fun addTaskToPage(name: String){
+
+        name?.let{
+            currentPage = name
+            viewModelScope.launch {
+                repository.addTaskToPage(name)
+            }
         }
     }
+
 
     fun deleteTask(){
         viewModelScope.launch {
@@ -66,10 +76,10 @@ class BoardViewModel(private val repository: Repository) : ViewModel() {
         }
     }
 
-//
-//    //only to test
-//    private val _currentPage: MutableLiveData<String> = MutableLiveData("ADD")
-//    val currentPage: LiveData<String>
-//        get() = _currentPage
+
+    //need to observe selected task to display card_detail_fragment (cannot setup listeners on non existing buttons)
+    private val _selectedTaskID: MutableLiveData<Long> = MutableLiveData()
+    val selectedTaskID: LiveData<Long>
+        get() = _selectedTaskID
 
 }

@@ -26,6 +26,9 @@ class RepositoryImpl(
   ) : Repository {
 
 
+    override val selectedTaskID: MutableLiveData<Long> = MutableLiveData()
+
+
     private val _authenticationState = MutableLiveData<AuthenticationState>()
     override val authenticationState: LiveData<AuthenticationState>
         get() = _authenticationState
@@ -71,14 +74,20 @@ class RepositoryImpl(
         // _currentBoard.value!!.id after enter bard
     }
 
-    override suspend fun addTaskToPage(name: String, ownerID: Long, description: String, pageID: Long): String? {
-       return taskNetworkDataSource.addTaskToPage(name, ownerID, description, pageID)
-    }
 
+    override suspend fun addTaskToPage(name: String, ownerID: Long, description: String, pageID: Long): String? {
+        return taskNetworkDataSource.addTaskToPage(name, ownerID, description, pageID)
+    }
     override suspend fun loadPageTasks(pageName: String): List<TaskResponse>?{
         loadBoardPages()
         val id = _currentBoardPages.value?.first { p -> p.name == pageName }?.id
         return taskNetworkDataSource.loadPageTasks(id)
+    }
+
+    override suspend fun addTaskToPage(pageName :String): String? {
+        loadBoardPages()
+        val id = _currentBoardPages.value?.first { p -> p.name == pageName }?.id
+        return taskNetworkDataSource.addTaskToPage("", SessionManager.userID!!.toLong(), "", id!!)
     }
 
     //FIRSTLY CHECK IF THE TASK EXIST/IS NOT CHANGED

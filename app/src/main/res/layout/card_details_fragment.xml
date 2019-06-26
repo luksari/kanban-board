@@ -47,17 +47,33 @@
 
 
             <EditText
+                    android:id="@+id/name_edittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:hint="@string/name_card_hint"
+                    android:background="@drawable/rounded_edittext"
+                    android:layout_marginTop="@dimen/marigin_sign_up_edittext"
+                    android:textColor="@color/colorPrimary"
+                    android:lines="2"
+                    android:maxLines="2"
+                    android:textColorHint="@color/colorDrawer"
+                    android:gravity="top"/>
+            <EditText
                 android:id="@+id/description_edittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/name_edittext"
+                app:layout_constraintTop_toBottomOf="@+id/name_edittext"
                 android:hint="@string/description_card_hint"
                 android:background="@drawable/rounded_edittext"
                 android:layout_marginTop="@dimen/marigin_sign_up_edittext"
                 android:textColor="@color/colorPrimary"
-                android:lines="8"
-                android:maxLines="10"/>
+                android:lines="4"
+                android:maxLines="10"
+                android:textColorHint="@color/colorDrawer"
+                android:gravity="top"/>
             <ImageView
                     android:id="@+id/user_icon"
                     android:layout_width="0dp"

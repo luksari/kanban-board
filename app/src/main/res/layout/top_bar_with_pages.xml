@@ -22,9 +22,17 @@
                     android:background="@color/colorPrimary"
                     app:popupTheme="@style/ThemeOverlay.AppCompat">
                 <Button android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/logout"
+                      android:layout_height="wrap_content"
+                      android:text="@string/logout"
                 />
+                <Button android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="@string/exit_board"
+                />
+                <Button android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/refresh_board"
+                        android:backgroundTint="@color/colorAccent"/>
             </androidx.appcompat.widget.Toolbar>
             <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tabLayout"

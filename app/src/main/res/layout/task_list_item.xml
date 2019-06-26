@@ -9,18 +9,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary">
-                <TextView
-                        android:id="@+id/activity1"
-                        android:layout_width="210dp"
+
+                <Button
+                        android:id="@+id/select_task_button"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/activities_edit_text"
-                        android:paddingVertical="10dp"
-                        android:paddingHorizontal="25dp"
                         android:textColor="#000"
-                        android:text="@{``+ viewModel.getTaskOfPosition(position).name}"/>
+                        android:text="@{``+ viewModel.getTaskOfPosition(position).name}"
+                        android:onClick="@{() -> viewModel.selectTask(viewModel.getTaskOfPosition(position).id)}"/>
                 <View
                         android:layout_width="210dp"
                         android:layout_height="15dp"
-                        android:layout_below="@+id/activity1"/>
+                        android:layout_below="@+id/select_task_button"/>
         </RelativeLayout>
 </layout>
