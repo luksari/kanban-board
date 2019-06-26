@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 
 import com.mvvm.kanban_board.R
 import com.mvvm.kanban_board.databinding.BoardFragmentBinding
@@ -41,8 +42,15 @@ class BoardFragment : Fragment() {
 
     private fun loadUI(){
         viewModel.loadPages(currentPageName)
+        setupListUpdate()
     }
 
+    private fun setupListUpdate(){
+        viewModel.pageTasks.observe(this, Observer {
+                tasks-> if(tasks.isNotEmpty())
+            viewModel.setAdapter(tasks)
+        })
+    }
 
 
 }

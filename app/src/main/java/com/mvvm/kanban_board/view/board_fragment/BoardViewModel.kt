@@ -28,6 +28,8 @@ class BoardViewModel(private val repository: Repository) : ViewModel() {
         adapter = TaskListAdapter(R.layout.task_list_item, this)
     }
 
+    fun getTaskOfPosition(id: Int) = _pageTasks.value?.get(id)
+
     fun setAdapter(cards: List<TaskResponse>){
         this.adapter?.setCards(cards)
         this.adapter?.notifyDataSetChanged();
@@ -39,8 +41,7 @@ class BoardViewModel(private val repository: Repository) : ViewModel() {
             currentPage = name
             //for testing loading pages
             viewModelScope.launch {
-                _pageTasks.value = repository.loadPageTasks("To do")
-                Log.d("TASKS", _pageTasks.value?.size.toString())
+                _pageTasks.value = repository.loadPageTasks(name)
             }
         }
     }
