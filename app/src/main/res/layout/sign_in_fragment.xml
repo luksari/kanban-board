@@ -83,14 +83,12 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/loginEditText"
                     android:hint="@string/password_hint"
-                    android:textColorHint="@color/colorAccent"
                     android:text="@={viewModel.password}"
                     android:background="@drawable/top_rounded_edittext"
                     android:layout_marginTop="@dimen/marigin_sign_up_edittext"
                     android:padding="@dimen/padding_sign_up_edittext"
                     android:textColor="@color/colorPrimary"
-                    android:textColorHint="@color/colorDrawer"
-                    android:inputType="textPassword"/>
+                    android:textColorHint="@color/colorDrawer"/>
             <TextView
                     android:id="@+id/go_to_sign_up"
                     app:layout_constraintTop_toBottomOf="@id/passwordEditText"
