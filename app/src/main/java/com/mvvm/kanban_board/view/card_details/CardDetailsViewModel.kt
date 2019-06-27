@@ -16,14 +16,8 @@ class CardDetailsViewModel(private val repository: Repository)  : ViewModel() {
 
     private var _currentTask: TaskResponse? = null
 
-
-    private val _name = MutableLiveData<String>()
-    val name: LiveData<String>
-        get() = _name
-
-    private val _description = MutableLiveData<String>()
-    val description: LiveData<String>
-        get() = _description
+    val name: MutableLiveData<String> = MutableLiveData()
+    val description: MutableLiveData<String> = MutableLiveData()
 
     private val _author = MutableLiveData<String>()
     val author: LiveData<String>
@@ -38,8 +32,8 @@ class CardDetailsViewModel(private val repository: Repository)  : ViewModel() {
     }
 
     private fun setCurrentTaskDetails(){
-            _name.value = _currentTask?.name
-            _description.value = _currentTask?.description
+            name.value = _currentTask?.name
+            description.value = _currentTask?.description
             viewModelScope.launch {   //great api
                 _author.value = repository.loadUser(_currentTask?.user)?.username
             }

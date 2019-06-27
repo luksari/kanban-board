@@ -60,7 +60,7 @@
                     android:maxLines="2"
                     android:textColorHint="@color/colorDrawer"
                     android:gravity="top"
-                    android:text="@{viewModel.name}"/>
+                    android:text="@={viewModel.name}"/>
             <EditText
                 android:id="@+id/description_edittext"
                 android:layout_width="match_parent"
