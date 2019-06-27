@@ -54,6 +54,7 @@ class CardDetailsFragment : Fragment() {
             viewModel.editTask()
             navController.navigate(R.id.topBarWithPagesFragment)
         }
+        
     }
 
 
