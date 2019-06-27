@@ -62,20 +62,6 @@ class BoardViewModel(private val repository: Repository) : ViewModel() {
     }
 
 
-    fun deleteTask(){
-        viewModelScope.launch {
-            //first check if was no changes
-            //repository.deleteTask()
-        }
-    }
-
-    fun EditTask(){
-        viewModelScope.launch {
-            //first check if was no changes
-            //repository.editTask()
-        }
-    }
-
 
     //need to observe selected task to display card_detail_fragment (cannot setup listeners on non existing buttons)
     private val _selectedTaskID: MutableLiveData<Long> = MutableLiveData()

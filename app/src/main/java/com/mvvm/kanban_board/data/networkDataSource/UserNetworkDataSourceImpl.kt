@@ -13,6 +13,8 @@ import org.json.JSONObject
 
 class UserNetworkDataSourceImpl(private val apiUtils: ApiUtils) : UserNetworkDataSource {
 
+
+
     private val _authenticationState = MutableLiveData<AuthenticationState>()
     override val authenticationState: LiveData<AuthenticationState>
         get() = _authenticationState
@@ -74,6 +76,12 @@ class UserNetworkDataSourceImpl(private val apiUtils: ApiUtils) : UserNetworkDat
         return null
     }
 
+    override suspend fun loadUser(userID: Long): UserRegisterResponse? {
+        getAllUsersAsync()?.let{
+            return it.first{u -> u.id == userID}
+        }
+        return null
+    }
 
 
 }

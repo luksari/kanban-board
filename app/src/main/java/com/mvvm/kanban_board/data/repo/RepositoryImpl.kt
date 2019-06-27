@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.mvvm.kanban_board.data.apiService.response.BoardResponse
 import com.mvvm.kanban_board.data.apiService.response.PageResponse
 import com.mvvm.kanban_board.data.apiService.response.TaskResponse
+import com.mvvm.kanban_board.data.apiService.response.UserRegisterResponse
 import com.mvvm.kanban_board.data.db.KanbanDao
 import com.mvvm.kanban_board.data.db.entity.Board
 import com.mvvm.kanban_board.data.db.entity.BoardsResponse
@@ -44,8 +45,10 @@ class RepositoryImpl(
 
 
     init{
-        // currentBoard.observeForever {  } -> here change in room
-    }
+         boardNetworkDataSource.currentBoard.observeForever { board ->
+             _currentBoard.value = board
+         } //-> here change in room
+}
 
     override suspend fun registerNewUser(name: String, password: String): String {
         return userNetworkDataSource.registerUser(name, password)
@@ -70,7 +73,7 @@ class RepositoryImpl(
 //        pages?.forEach { p ->
 //            Log.d("PAGES", p.name)
 //        }
-       _currentBoardPages.value = pageNetworkDataSource.loadBoardPages(16)
+       _currentBoardPages.value = pageNetworkDataSource.loadBoardPages(_currentBoard.value!!.id) //16
         // _currentBoard.value!!.id after enter bard
     }
 
@@ -81,7 +84,9 @@ class RepositoryImpl(
     override suspend fun loadPageTasks(pageName: String): List<TaskResponse>?{
         loadBoardPages()
         val id = _currentBoardPages.value?.first { p -> p.name == pageName }?.id
+        Log.d("PAGE TASKS", id.toString())
         return taskNetworkDataSource.loadPageTasks(id)
+        //return null
     }
 
     override suspend fun addTaskToPage(pageName :String): String? {
@@ -108,9 +113,27 @@ class RepositoryImpl(
     override suspend fun loadTask(taskID: Long) {
         taskNetworkDataSource.loadTask(taskID)
     }
+    override suspend fun loadSelectedTask(): TaskResponse? {
+        return taskNetworkDataSource.loadTask(selectedTaskID.value!!)
+    }
+
+    override suspend fun deleteSelectedTask(): String? {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override suspend fun editSelectedTask(name: String, description: String): String? {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override suspend fun loadUser(userID: Long?): UserRegisterResponse? {
+        userID?.let{
+            return  userNetworkDataSource.loadUser(userID)
+        }
+        return null
+    }
 
 
-   init {
+    init {
        userNetworkDataSource.authenticationState.observeForever {
            _authenticationState.value = it
        }

@@ -53,8 +53,9 @@ class BoardFragment : Fragment() {
     private fun setupListUpdate(){
         //val navController = findNavController()
         viewModel.pageTasks.observe(this, Observer {
-                tasks-> if(tasks.isNotEmpty())
-            viewModel.setAdapter(tasks)
+                tasks -> tasks?.let{
+                    if(tasks.isNotEmpty())
+                    viewModel.setAdapter(tasks) }
         })
     }
 
