@@ -69,30 +69,26 @@ class RepositoryImpl(
     }
 
     override suspend fun loadBoardPages(){
-//        val pages = pageNetworkDataSource.loadBoardPages(16)//_currentBoard.value!!.id)
-//        pages?.forEach { p ->
-//            Log.d("PAGES", p.name)
-//        }
        _currentBoardPages.value = pageNetworkDataSource.loadBoardPages(_currentBoard.value!!.id) //16
-        // _currentBoard.value!!.id after enter bard
     }
 
 
     override suspend fun addTaskToPage(name: String, ownerID: Long, description: String, pageID: Long): String? {
-        return taskNetworkDataSource.addTaskToPage(name, ownerID, description, pageID)
+        selectedTaskID.value = taskNetworkDataSource.addTaskToPage(name, ownerID, description, pageID)?.id
+        return ""
     }
     override suspend fun loadPageTasks(pageName: String): List<TaskResponse>?{
         loadBoardPages()
         val id = _currentBoardPages.value?.first { p -> p.name == pageName }?.id
         Log.d("PAGE TASKS", id.toString())
         return taskNetworkDataSource.loadPageTasks(id)
-        //return null
     }
 
     override suspend fun addTaskToPage(pageName :String): String? {
         loadBoardPages()
         val id = _currentBoardPages.value?.first { p -> p.name == pageName }?.id
-        return taskNetworkDataSource.addTaskToPage("", SessionManager.userID!!.toLong(), "", id!!)
+        selectedTaskID.value = taskNetworkDataSource.addTaskToPage("", SessionManager.userID!!.toLong(), "", id!!)?.id
+        return ""
     }
 
     //FIRSTLY CHECK IF THE TASK EXIST/IS NOT CHANGED
@@ -118,11 +114,16 @@ class RepositoryImpl(
     }
 
     override suspend fun deleteSelectedTask(): String? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return taskNetworkDataSource.deleteTasks(selectedTaskID.value!!)
     }
 
-    override suspend fun editSelectedTask(name: String, description: String): String? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override suspend fun editSelectedTask(name: String?, description: String?): String? {
+//        loadBoardPages()
+//        val pageID = _currentBoardPages.value?.first { p -> p.name == pageName }?.id
+//        return taskNetworkDataSource.editTasks(selectedTaskID.value!!, name!!,
+//            SessionManager.userID!!.toLong(), description!!, cur )
+        // owner is the last editing user
+        return ""
     }
 
     override suspend fun loadUser(userID: Long?): UserRegisterResponse? {

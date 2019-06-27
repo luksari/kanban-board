@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.mvvm.kanban_board.R
 import com.mvvm.kanban_board.data.apiService.response.TaskResponse
 import com.mvvm.kanban_board.data.repo.Repository
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class BoardViewModel(private val repository: Repository) : ViewModel() {

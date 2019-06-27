@@ -47,19 +47,15 @@ class TaskNetworkDataSourceImpl(private val apiUtils: ApiUtils) : TaskNetworkDat
 
     }
 
-    override suspend fun addTaskToPage(name: String, ownerID: Long, description: String, pageID: Long): String {
-        var message: String
+    override suspend fun addTaskToPage(name: String, ownerID: Long, description: String, pageID: Long): TaskResponse? {
         try {
             apiUtils.apiService.postTaskToPageAsync(TaskRequest(name = name, user = ownerID, description = description, page = pageID) ).let {
-                message = if (it.isSuccessful) {
-                    "Your board was created successfully!"
-                } else { "Sorry, server error occurred, try again"
-                }
+                if(it.isSuccessful) return it.body()
             }
         } catch (e: Exception) {
-            message = "An error occurred, check the internet connection"
+           return null
         }
-        return message
+        return null
     }
 
 

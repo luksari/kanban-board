@@ -32,7 +32,7 @@ interface Repository {
 
     suspend fun loadSelectedTask(): TaskResponse?
     suspend fun deleteSelectedTask(): String?
-    suspend fun editSelectedTask(name: String, description: String): String?
+    suspend fun editSelectedTask(name: String? = "", description: String? = ""): String?
 
 
 

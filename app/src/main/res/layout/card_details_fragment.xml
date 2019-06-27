@@ -152,11 +152,12 @@
                     android:textColor="@color/colorSecondaryLight"
                     android:backgroundTint="@color/colorAccent"
                     android:background="@drawable/rounded_middle_button"
-                    android:layout_marginBottom="@dimen/marigin_sign_up_elements"/>
+                    android:layout_marginBottom="@dimen/marigin_sign_up_elements"
+                    android:onClick="@{() -> viewModel.editTask()}"/>
 
             <Button
-                    android:layout_marginTop="100dp"
                     android:id="@+id/remove_button"
+                    android:layout_marginTop="100dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/remove_card_button_text"
@@ -165,6 +166,7 @@
                     android:minHeight="@dimen/minHeight_sign_up_button"
                     android:backgroundTint="@color/colorDanger"
                     android:background="@drawable/rounded_middle_button"/>
+                    <!--android:onClick="@{() -> viewModel.deleteTask()}"/>-->
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,7 +23,10 @@
     </fragment>
     <fragment android:id="@+id/createBoardFragment"
               android:name="com.mvvm.kanban_board.view.create_board.CreateBoardFragment"
-              android:label="create_board_fragment" tools:layout="@layout/create_board_fragment"/>
+              android:label="create_board_fragment" tools:layout="@layout/create_board_fragment">
+        <action android:id="@+id/action_createBoardFragment_to_enterBoardFragment3"
+                app:destination="@id/enterBoardFragment"/>
+    </fragment>
     <fragment android:id="@+id/boardFragment" android:name="com.mvvm.kanban_board.view.board_fragment.BoardFragment"
               android:label="board_fragment" tools:layout="@layout/board_fragment">
         <action android:id="@+id/action_boardFragment_to_cardDetailsFragment"
@@ -32,7 +35,8 @@
     <fragment android:id="@+id/cardDetailsFragment"
               android:name="com.mvvm.kanban_board.view.card_details.CardDetailsFragment"
               android:label="card_details_fragment" tools:layout="@layout/card_details_fragment">
-        <action android:id="@+id/action_cardDetailsFragment_to_boardFragment" app:destination="@id/boardFragment"/>
+        <action android:id="@+id/action_cardDetailsFragment_to_topBarWithPagesFragment"
+                app:destination="@id/topBarWithPagesFragment"/>
     </fragment>
     <fragment android:id="@+id/topBarWithPagesFragment"
               android:name="com.mvvm.kanban_board.view.top_bar.TopBarWithPagesFragment"
