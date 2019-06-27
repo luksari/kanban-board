@@ -14,4 +14,5 @@ interface TaskNetworkDataSource {
     suspend fun loadTask(taskID: Long): TaskResponse?
 
 
+    suspend fun editTasks(editedTask: TaskResponse): String?
 }

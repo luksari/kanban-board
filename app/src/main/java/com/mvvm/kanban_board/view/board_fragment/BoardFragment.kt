@@ -64,11 +64,12 @@ class BoardFragment : Fragment() {
 
         add_task_button.setOnClickListener {
             viewModel.addTaskToPage(currentPageName)
-            //then navigate! -> fix 
+            //then navigate! -> fix
             navController.navigate(R.id.cardDetailsFragment)
         }
         viewModel.selectedTaskID.observe(viewLifecycleOwner, Observer {
             navController.navigate(R.id.cardDetailsFragment) })
+
     }
 
 

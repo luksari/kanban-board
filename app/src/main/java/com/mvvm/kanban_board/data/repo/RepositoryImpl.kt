@@ -28,6 +28,7 @@ class RepositoryImpl(
 
 
     override val selectedTaskID: MutableLiveData<Long> = MutableLiveData()
+    private var selectedPageID: Long? = null
 
 
     private val _authenticationState = MutableLiveData<AuthenticationState>()
@@ -79,9 +80,8 @@ class RepositoryImpl(
     }
     override suspend fun loadPageTasks(pageName: String): List<TaskResponse>?{
         loadBoardPages()
-        val id = _currentBoardPages.value?.first { p -> p.name == pageName }?.id
-        Log.d("PAGE TASKS", id.toString())
-        return taskNetworkDataSource.loadPageTasks(id)
+        selectedPageID = _currentBoardPages.value?.first { p -> p.name == pageName }?.id
+        return taskNetworkDataSource.loadPageTasks(selectedPageID)
     }
 
     override suspend fun addTaskToPage(pageName :String): String? {
@@ -118,14 +118,17 @@ class RepositoryImpl(
     }
 
     override suspend fun editSelectedTask(name: String?, description: String?): String? {
-//        loadBoardPages()
-//        val pageID = _currentBoardPages.value?.first { p -> p.name == pageName }?.id
-//        return taskNetworkDataSource.editTasks(selectedTaskID.value!!, name!!,
-//            SessionManager.userID!!.toLong(), description!!, cur )
-        // owner is the last editing user
+        loadBoardPages()
+        val userID = SessionManager.userID!!.toLong()
+        return taskNetworkDataSource.editTasks(selectedTaskID.value!!, name!! , userID, description!!, selectedPageID!!)
         return ""
     }
 
+    override suspend fun editTask(editedTask :TaskResponse): String? {
+        loadBoardPages()
+        return taskNetworkDataSource.editTasks(editedTask)
+        return ""
+    }
     override suspend fun loadUser(userID: Long?): UserRegisterResponse? {
         userID?.let{
             return  userNetworkDataSource.loadUser(userID)

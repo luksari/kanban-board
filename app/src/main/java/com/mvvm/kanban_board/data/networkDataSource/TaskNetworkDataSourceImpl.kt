@@ -23,6 +23,23 @@ class TaskNetworkDataSourceImpl(private val apiUtils: ApiUtils) : TaskNetworkDat
         return message
     }
 
+    override suspend fun editTasks(t: TaskResponse): String? {
+        var message: String
+        try{
+            val updatedTask = TaskRequest(name = t.name, user = t.user, description = t.description, page = t.page)
+            apiUtils.apiService.editTaskAsync(taskID = t.id.toString(), task = updatedTask ).let{
+                message = if (it.isSuccessful) {
+                    "Task saved!"
+                } else {
+                    "Sorry, server error occurred, try again"  //task not found
+                }
+            }
+        } catch (e: Exception) {
+            message = "An error occurred, check the internet connection"
+        }
+        return message
+
+    }
     override suspend fun editTasks(
         taskID: Long,
         name: String,

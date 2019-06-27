@@ -62,8 +62,6 @@ class BoardViewModel(private val repository: Repository) : ViewModel() {
         }
     }
 
-
-
     //need to observe selected task to display card_detail_fragment (cannot setup listeners on non existing buttons)
     private val _selectedTaskID: MutableLiveData<Long> = MutableLiveData()
     val selectedTaskID: LiveData<Long>

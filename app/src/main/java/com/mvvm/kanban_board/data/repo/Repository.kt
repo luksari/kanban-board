@@ -34,6 +34,7 @@ interface Repository {
     suspend fun deleteSelectedTask(): String?
     suspend fun editSelectedTask(name: String? = "", description: String? = ""): String?
 
+    suspend fun editTask(editedTask: TaskResponse): String?
 
 
 

@@ -54,9 +54,14 @@ class CardDetailsViewModel(private val repository: Repository)  : ViewModel() {
     fun editTask(){
         viewModelScope.launch {
             //first check if was no changes
-            repository.editSelectedTask(name.value, description.value)
+            if(_currentTask?.name!= name.value  || _currentTask?.description != description.value ){
+                val editedTask = _currentTask
+                    editedTask?.let{
+                        it.name = name.value!!
+                        it.description = description.value!!
+                        repository.editTask(it)
+                    }
+            }
         }
     }
-
-
 }

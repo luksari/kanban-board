@@ -152,8 +152,8 @@
                     android:textColor="@color/colorSecondaryLight"
                     android:backgroundTint="@color/colorAccent"
                     android:background="@drawable/rounded_middle_button"
-                    android:layout_marginBottom="@dimen/marigin_sign_up_elements"
-                    android:onClick="@{() -> viewModel.editTask()}"/>
+                    android:layout_marginBottom="@dimen/marigin_sign_up_elements"/>
+                    <!--android:onClick="@{() -> viewModel.editTask()}"/>-->
 
             <Button
                     android:id="@+id/remove_button"
