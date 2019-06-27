@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.mvvm.kanban_board.R
@@ -54,6 +55,7 @@ class CardDetailsFragment : Fragment() {
             viewModel.editTask()
             navController.navigate(R.id.topBarWithPagesFragment)
         }
+
 
     }
 

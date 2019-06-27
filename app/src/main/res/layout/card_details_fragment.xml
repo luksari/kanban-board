@@ -109,7 +109,7 @@
                     android:gravity="center"
                     android:text="@{viewModel.author}"/>
             <RadioGroup
-                    android:id="@+id/page_radioButton"
+                    android:id="@+id/page_radioButtons"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="@+id/user_icon"
@@ -120,28 +120,33 @@
                     android:orientation="horizontal"
                     android:gravity="center">
 
+
                 <RadioButton
                         android:id="@+id/to_do_radioButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="To Do"/>
+                        android:text="To Do"
+                        android:checked="@={viewModel.isToDoChecked}"/>
 
                 <RadioButton
                         android:id="@+id/in_progress_radioButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="In Progress" />
+                        android:text="In Progress"
+                        android:checked="@={viewModel.isInProgressChecked}"/>
 
                 <RadioButton
                         android:id="@+id/to_test_radioButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="To Test" />
+                        android:text="To Test"
+                        android:checked="@={viewModel.isTestingChecked}"/>
                 <RadioButton
                         android:id="@+id/done_radioButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Done" />
+                        android:text="Done"
+                        android:checked="@={viewModel.isDoneChecked}"/>
             </RadioGroup>
 
 

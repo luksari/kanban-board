@@ -50,6 +50,8 @@ class RepositoryImpl(
     override val currentBoardPages: LiveData<List<PageResponse>>
         get() = _currentBoardPages
 
+
+    //it is not always actual current page as we see, because tabs are loading in very strange queue, before changed them loading invisible tabs
     private val _currentPage = MutableLiveData<PageResponse>()
     override val currentPage: LiveData<PageResponse>
         get() = _currentPage
@@ -91,10 +93,10 @@ class RepositoryImpl(
         return taskNetworkDataSource.loadPageTasks(_currentPage.value?.id)
     }
 
-    override suspend fun addTaskToPage(): String? {
+    override suspend fun addTaskToPage(pageName: String): String? { //TASK PAGE ID NEED
         loadBoardPages()
-        val pageID = _currentPage.value!!.id
-        _currentTask.value = taskNetworkDataSource.addTaskToPage("", SessionManager.userID!!.toLong(), "", pageID)
+        val pageID = _currentBoardPages.value?.first { p -> p.name == pageName }?.id
+        _currentTask.value = taskNetworkDataSource.addTaskToPage("", SessionManager.userID!!.toLong(), "", pageID!!)
         return ""
     }
 
@@ -105,7 +107,7 @@ class RepositoryImpl(
     }
 
 
-    override suspend fun editTask(editedTask :TaskResponse): String? {
+    override suspend fun editTask(editedTask: TaskResponse): String? {
         loadBoardPages()
         return taskNetworkDataSource.editTasks(editedTask)
         return ""

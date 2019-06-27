@@ -63,7 +63,7 @@ class BoardViewModel(private val repository: Repository) : ViewModel() {
         viewModelScope.launch {
                 _isTaskAdded.value = false
                 _loaderVisibility.value = VISIBLE
-                repository.addTaskToPage()
+                repository.addTaskToPage(currentPage!!)
                 _isTaskAdded.value = true
                 _loaderVisibility.value = GONE
         }

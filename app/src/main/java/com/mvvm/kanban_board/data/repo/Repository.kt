@@ -19,13 +19,13 @@ interface Repository {
     suspend fun createBoard(identifier: String, name: String): String?
     suspend fun enterBoard(identifier: String): String?
     suspend fun loadBoardPages()
-    suspend fun addTaskToPage(): String?
     suspend fun loadPageTasks(pageName: String): List<TaskResponse>?
     suspend fun loadUser(userID: Long?): UserRegisterResponse?
-   // suspend fun loadSelectedTask(): TaskResponse?
     suspend fun deleteSelectedTask(): String?
     suspend fun editTask(editedTask: TaskResponse): String?
     suspend fun setCurrentTask(taskID: Long)
+    suspend fun addTaskToPage(pageName: String): String?
+
 
 
 
