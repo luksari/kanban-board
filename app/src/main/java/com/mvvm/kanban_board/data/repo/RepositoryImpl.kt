@@ -114,6 +114,9 @@ class RepositoryImpl(
         SessionManager.userID = null
     }
 
+    override fun exitBoard() {
+        _currentBoard.value = null
+    }
 
 
     init {

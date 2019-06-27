@@ -16,13 +16,11 @@ class TopBarWithPagesViewModel(private val repository: Repository)  : ViewModel(
     }
 
     fun exitBoard(){
-       // viewModel.enteredBoard.
+       repository.exitBoard()
     }
-
-
-    //need to know position?
+    
     fun refresh(){
-
+        //to implement
     }
 
 }
