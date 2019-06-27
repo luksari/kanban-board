@@ -19,22 +19,13 @@ interface Repository {
     suspend fun createBoard(identifier: String, name: String): String?
     suspend fun enterBoard(identifier: String): String?
     suspend fun loadBoardPages()
-
-    suspend fun addTaskToPage(pageName :String): String?
-    suspend fun addTaskToPage(name: String, ownerID: Long, description: String, pageID: Long): String?
+    suspend fun addTaskToPage(): String?
     suspend fun loadPageTasks(pageName: String): List<TaskResponse>?
-
-    suspend fun deleteTask(taskID: Long): String?
-    suspend fun editTask(taskID: Long, name: String, ownerID: Long, description: String, pageID: Long): String?
-    suspend fun loadTask(taskID: Long)
-
     suspend fun loadUser(userID: Long?): UserRegisterResponse?
-
-    suspend fun loadSelectedTask(): TaskResponse?
+   // suspend fun loadSelectedTask(): TaskResponse?
     suspend fun deleteSelectedTask(): String?
-    suspend fun editSelectedTask(name: String? = "", description: String? = ""): String?
-
     suspend fun editTask(editedTask: TaskResponse): String?
+    suspend fun setCurrentTask(taskID: Long)
 
 
 
@@ -42,5 +33,11 @@ interface Repository {
     val authenticationState: LiveData<AuthenticationState>
     val currentBoard: LiveData<BoardResponse>
     val currentBoardPages: LiveData<List<PageResponse>>
-    val selectedTaskID: MutableLiveData<Long>
+    val currentPage: LiveData<PageResponse>
+    val currentTask: LiveData<TaskResponse>
+
+    // val selectedTaskID: MutableLiveData<Long>
+
+    //val curentTaskID: MutableLiveData<Long>
+
 }

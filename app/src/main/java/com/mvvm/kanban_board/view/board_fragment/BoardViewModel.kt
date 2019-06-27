@@ -19,6 +19,7 @@ class BoardViewModel(private val repository: Repository) : ViewModel() {
     private var adapter : TaskListAdapter? = null
 
     private var currentPage: String? = null
+
     private val _loaderVisibility: MutableLiveData<Int> = MutableLiveData(View.GONE)
     val loaderVisibility: LiveData<Int>
         get() = _loaderVisibility
@@ -37,32 +38,32 @@ class BoardViewModel(private val repository: Repository) : ViewModel() {
 
     fun getTaskOfPosition(id: Int) = _pageTasks.value?.get(id)
 
-    fun setAdapter(cards: List<TaskResponse>){
-        this.adapter?.setCards(cards)
-        this.adapter?.notifyDataSetChanged();
+    fun setAdapter(tasks: List<TaskResponse>){
+        this.adapter?.setCards(tasks)
+        this.adapter?.notifyDataSetChanged()
     }
     fun getAdapter() = adapter
 
-    fun loadPages(name: String?) {
-        name?.let {
-            currentPage = name
-            //for testing loading pages
+    fun loadPages(page: String?) {
+        page?.let {
+            currentPage = page
             viewModelScope.launch {
-                _pageTasks.value = repository.loadPageTasks(name)
-                Log.d("TASKS", _pageTasks.value?.size.toString())
+                _pageTasks.value = repository.loadPageTasks(page)
             }
         }
     }
 
     fun selectTask(taskID: Long){
-        repository.selectedTaskID.value = taskID
-        _selectedTaskID.value = taskID
+        viewModelScope.launch {
+            repository.setCurrentTask(taskID)
+            _selectedTask.value = repository.currentTask.value
+        }
     }
     fun addTaskToPage(){
         viewModelScope.launch {
                 _isTaskAdded.value = false
                 _loaderVisibility.value = VISIBLE
-                repository.addTaskToPage(currentPage!!)
+                repository.addTaskToPage()
                 _isTaskAdded.value = true
                 _loaderVisibility.value = GONE
         }
@@ -70,8 +71,8 @@ class BoardViewModel(private val repository: Repository) : ViewModel() {
 
 
     //need to observe selected task to display card_detail_fragment (cannot setup listeners on non existing buttons)
-    private val _selectedTaskID: MutableLiveData<Long> = MutableLiveData()
-    val selectedTaskID: LiveData<Long>
-        get() = _selectedTaskID
+    private val _selectedTask: MutableLiveData<TaskResponse> = MutableLiveData()
+    val selectedTask: LiveData<TaskResponse>
+        get() = _selectedTask
 
 }

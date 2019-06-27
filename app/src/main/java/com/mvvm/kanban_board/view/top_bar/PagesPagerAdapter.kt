@@ -10,11 +10,9 @@ import com.mvvm.kanban_board.view.board_fragment.BoardFragment
 class PagesPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT){
 
     override fun getItem(position: Int): Fragment {
-        val args = Bundle()
         val name = getPageTitle(position).toString()
         val instance =  BoardFragment()
-        instance.currentPageName = name
-        Log.d("BOARD AD", name)
+        instance.currentPageName = name //BoardFragment need to know the current page
         return instance
     }
     override fun getCount(): Int = 4

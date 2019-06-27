@@ -34,16 +34,14 @@ class BoardFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-
-
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         loadUI()
-
     }
+
 
     private fun loadUI(){
         viewModel.loadPages(currentPageName)
@@ -52,7 +50,6 @@ class BoardFragment : Fragment() {
     }
 
     private fun setupListUpdate(){
-        //val navController = findNavController()
         viewModel.pageTasks.observe(this, Observer {
                 tasks -> tasks?.let{
                     if(tasks.isNotEmpty())
@@ -66,7 +63,7 @@ class BoardFragment : Fragment() {
         viewModel.isTaskAdded.observe(viewLifecycleOwner, Observer { isTaskAdded ->
             if(isTaskAdded) navController.navigate(R.id.cardDetailsFragment)
         })
-        viewModel.selectedTaskID.observe(viewLifecycleOwner, Observer {
+        viewModel.selectedTask.observe(viewLifecycleOwner, Observer {
             navController.navigate(R.id.cardDetailsFragment) })
     }
 

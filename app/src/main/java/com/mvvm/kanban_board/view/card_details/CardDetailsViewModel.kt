@@ -24,14 +24,10 @@ class CardDetailsViewModel(private val repository: Repository)  : ViewModel() {
         get() = _author
 
     init{
-        repository.selectedTaskID.observeForever {
-            viewModelScope.launch {
-                val task = repository.loadSelectedTask()
-                _currentTask = task
-                setCurrentTaskDetails()
-            }
+        repository.currentTask.observeForever {it ->
+            _currentTask = it
+            setCurrentTaskDetails()
         }
-
     }
 
     private fun setCurrentTaskDetails(){
@@ -44,7 +40,6 @@ class CardDetailsViewModel(private val repository: Repository)  : ViewModel() {
 
 
     fun deleteTask(){
-        Log.d("DETAILS", "removing")
         viewModelScope.launch {
             //first check if was no changes
             repository.deleteSelectedTask()

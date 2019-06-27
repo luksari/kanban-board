@@ -27,8 +27,9 @@ class RepositoryImpl(
   ) : Repository {
 
 
-    override val selectedTaskID: MutableLiveData<Long> = MutableLiveData()
-    private var selectedPageID: Long? = null
+    //override val curentTaskID: MutableLiveData<Long> = MutableLiveData()
+//    private var selectedPageID: Long? = null
+
 
 
     private val _authenticationState = MutableLiveData<AuthenticationState>()
@@ -40,10 +41,18 @@ class RepositoryImpl(
     override val currentBoard: LiveData<BoardResponse>
         get() = _currentBoard
 
+
+    private val _currentTask = MutableLiveData<TaskResponse>()
+    override val currentTask: LiveData<TaskResponse>
+        get() = _currentTask
+
     private val _currentBoardPages = MutableLiveData<List<PageResponse>>()
     override val currentBoardPages: LiveData<List<PageResponse>>
         get() = _currentBoardPages
 
+    private val _currentPage = MutableLiveData<PageResponse>()
+    override val currentPage: LiveData<PageResponse>
+        get() = _currentPage
 
     init{
          boardNetworkDataSource.currentBoard.observeForever { board ->
@@ -65,64 +74,36 @@ class RepositoryImpl(
 
 
     override suspend fun enterBoard(identifier: String): String? {
-        //load board pages here! to get ids
+        //after success _currentBoard.value is changed by obvserver
         return boardNetworkDataSource.enterBoard(identifier)
     }
 
     override suspend fun loadBoardPages(){
        _currentBoardPages.value = pageNetworkDataSource.loadBoardPages(_currentBoard.value!!.id) //16
     }
-
-
-    override suspend fun addTaskToPage(name: String, ownerID: Long, description: String, pageID: Long): String? {
-        selectedTaskID.value = taskNetworkDataSource.addTaskToPage(name, ownerID, description, pageID)?.id
-        return ""
+    override suspend fun setCurrentTask(taskID: Long){
+        _currentTask.value = taskNetworkDataSource.loadTask(taskID)
     }
+
     override suspend fun loadPageTasks(pageName: String): List<TaskResponse>?{
         loadBoardPages()
-        selectedPageID = _currentBoardPages.value?.first { p -> p.name == pageName }?.id
-        return taskNetworkDataSource.loadPageTasks(selectedPageID)
+        _currentPage.value = _currentBoardPages.value?.first { p -> p.name == pageName }
+        return taskNetworkDataSource.loadPageTasks(_currentPage.value?.id)
     }
 
-    override suspend fun addTaskToPage(pageName :String): String? {
+    override suspend fun addTaskToPage(): String? {
         loadBoardPages()
-        val id = _currentBoardPages.value?.first { p -> p.name == pageName }?.id
-        selectedTaskID.value = taskNetworkDataSource.addTaskToPage("", SessionManager.userID!!.toLong(), "", id!!)?.id
+        val pageID = _currentPage.value!!.id
+        _currentTask.value = taskNetworkDataSource.addTaskToPage("", SessionManager.userID!!.toLong(), "", pageID)
         return ""
     }
 
     //FIRSTLY CHECK IF THE TASK EXIST/IS NOT CHANGED
-    override suspend fun deleteTask(taskID: Long): String? {
-        return taskNetworkDataSource.deleteTasks(taskID)
-    }
-
-    override suspend fun editTask(
-        taskID: Long,
-        name: String,
-        ownerID: Long,
-        description: String,
-        pageID: Long
-    ): String? {
-        return taskNetworkDataSource.editTasks(taskID, name, ownerID, description, pageID)
-    }
-
-    override suspend fun loadTask(taskID: Long) {
-        taskNetworkDataSource.loadTask(taskID)
-    }
-    override suspend fun loadSelectedTask(): TaskResponse? {
-        return taskNetworkDataSource.loadTask(selectedTaskID.value!!)
-    }
 
     override suspend fun deleteSelectedTask(): String? {
-        return taskNetworkDataSource.deleteTasks(selectedTaskID.value!!)
+        return taskNetworkDataSource.deleteTasks(_currentTask.value!!.id)
     }
 
-    override suspend fun editSelectedTask(name: String?, description: String?): String? {
-        loadBoardPages()
-        val userID = SessionManager.userID!!.toLong()
-        return taskNetworkDataSource.editTasks(selectedTaskID.value!!, name!! , userID, description!!, selectedPageID!!)
-        return ""
-    }
 
     override suspend fun editTask(editedTask :TaskResponse): String? {
         loadBoardPages()
