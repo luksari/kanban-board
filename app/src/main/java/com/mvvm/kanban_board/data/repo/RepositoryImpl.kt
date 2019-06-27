@@ -1,6 +1,6 @@
 package com.mvvm.kanban_board.data.repo
 
-import android.util.Log
+
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.mvvm.kanban_board.data.apiService.response.BoardResponse
@@ -8,14 +8,10 @@ import com.mvvm.kanban_board.data.apiService.response.PageResponse
 import com.mvvm.kanban_board.data.apiService.response.TaskResponse
 import com.mvvm.kanban_board.data.apiService.response.UserRegisterResponse
 import com.mvvm.kanban_board.data.db.KanbanDao
-import com.mvvm.kanban_board.data.db.entity.Board
-import com.mvvm.kanban_board.data.db.entity.BoardsResponse
 import com.mvvm.kanban_board.data.networkDataSource.*
 import com.mvvm.kanban_board.session.AuthenticationState
 import com.mvvm.kanban_board.session.SessionManager
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+
 
 
 class RepositoryImpl(
@@ -25,12 +21,6 @@ class RepositoryImpl(
     private val pageNetworkDataSource: PageNetworkDataSource,
     private val taskNetworkDataSource: TaskNetworkDataSource
   ) : Repository {
-
-
-    //override val curentTaskID: MutableLiveData<Long> = MutableLiveData()
-//    private var selectedPageID: Long? = null
-
-
 
     private val _authenticationState = MutableLiveData<AuthenticationState>()
     override val authenticationState: LiveData<AuthenticationState>
@@ -49,7 +39,6 @@ class RepositoryImpl(
     private val _currentBoardPages = MutableLiveData<List<PageResponse>>()
     override val currentBoardPages: LiveData<List<PageResponse>>
         get() = _currentBoardPages
-
 
     //it is not always actual current page as we see, because tabs are loading in very strange queue, before changed them loading invisible tabs
     private val _currentPage = MutableLiveData<PageResponse>()
@@ -118,6 +107,13 @@ class RepositoryImpl(
         }
         return null
     }
+    override fun logout(){
+        _authenticationState.value = AuthenticationState.UNAUTHENTICATED
+        SessionManager.accessToken = null
+        SessionManager.username = null
+        SessionManager.userID = null
+    }
+
 
 
     init {

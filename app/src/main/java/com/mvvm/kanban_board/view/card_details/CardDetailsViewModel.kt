@@ -1,15 +1,12 @@
 package com.mvvm.kanban_board.view.card_details
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.viewModelScope
-import com.mvvm.kanban_board.R
 import com.mvvm.kanban_board.data.apiService.response.PageResponse
 import com.mvvm.kanban_board.data.apiService.response.TaskResponse
 import com.mvvm.kanban_board.data.repo.Repository
-import com.mvvm.kanban_board.session.AuthenticationState
 import kotlinx.coroutines.launch
 
 class CardDetailsViewModel(private val repository: Repository)  : ViewModel() {
@@ -38,7 +35,8 @@ class CardDetailsViewModel(private val repository: Repository)  : ViewModel() {
         repository.currentTask.observeForever {
             _currentTask = it
             setCurrentTaskDetails()
-            checkedPageName.value = repository.currentBoardPages.value?.firstOrNull { p -> p.id == _currentTask?.page }?.name
+            _currentPage =  repository.currentBoardPages.value?.firstOrNull { p -> p.id == _currentTask?.page }
+            checkedPageName.value = _currentPage?.name
         }
 
         // problem with binding and evertyhing xd,  initial this solution working..
@@ -85,6 +83,8 @@ class CardDetailsViewModel(private val repository: Repository)  : ViewModel() {
 
 
     fun deleteTask() {
+
+        repository.currentPage
         viewModelScope.launch {
             //first check if was no changes
             repository.deleteSelectedTask()
@@ -108,25 +108,7 @@ class CardDetailsViewModel(private val repository: Repository)  : ViewModel() {
         }
     }
 }
-//            if(_currentTask?.name!= name.value  || _currentTask?.description != description.value ){
-//
-//                val editedTask = _currentTask
-//                editedTask?.let{
-//                    it.name = name.value!!
-//                    it.description = description.value!!
-//                    repository.editTask(it
-//
-//                }
 
-//                //check if the page of task was edited by user, if yes, changing page id
-//                if(checkedPageName.value != _currentPage?.name){
-//                   val checkedPageID = repository.currentBoardPages.value?.first{p -> p.name == checkedPageName.value}?.id
-//                    editedTask?.let{
-//                        if (checkedPageID != null) {
-//                            it.page = checkedPageID
-//                        }
-//                    }
-//                }
 
 
 

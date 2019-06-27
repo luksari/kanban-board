@@ -25,6 +25,7 @@ interface Repository {
     suspend fun editTask(editedTask: TaskResponse): String?
     suspend fun setCurrentTask(taskID: Long)
     suspend fun addTaskToPage(pageName: String): String?
+    fun logout()
 
 
 

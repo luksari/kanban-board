@@ -40,6 +40,11 @@
     </fragment>
     <fragment android:id="@+id/topBarWithPagesFragment"
               android:name="com.mvvm.kanban_board.view.top_bar.TopBarWithPagesFragment"
-              android:label="TopBarWithPagesFragment"/>
+              android:label="TopBarWithPagesFragment">
+        <action android:id="@+id/action_topBarWithPagesFragment_to_enterBoardFragment"
+                app:destination="@id/enterBoardFragment"/>
+        <action android:id="@+id/action_topBarWithPagesFragment_to_signInFragment"
+                app:destination="@id/signInFragment"/>
+    </fragment>
 
 </navigation>

@@ -43,7 +43,7 @@ class EnterBoardFragment : Fragment() {
             navController.navigate(R.id.createBoardFragment)
         }
         viewModel.enteredBoard.observe(viewLifecycleOwner, Observer {
-                navController.navigate(R.id.topBarWithPagesFragment) })
+            if(it!= null) navController.navigate(R.id.topBarWithPagesFragment) })
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         setupListeners()

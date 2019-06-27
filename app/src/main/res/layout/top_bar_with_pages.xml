@@ -21,15 +21,18 @@
                     android:layout_height="wrap_content"
                     android:background="@color/colorPrimary"
                     app:popupTheme="@style/ThemeOverlay.AppCompat">
-                <Button android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:text="@string/logout"
+                <Button
+                        android:id="@+id/logout_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/logout"/>
+                <Button android:id="@+id/exit_board_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/exit_board"
                 />
-                <Button android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:text="@string/exit_board"
-                />
-                <Button android:layout_width="wrap_content"
+                <Button android:id="@+id/refresh_board_button"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/refresh_board"
                         android:backgroundTint="@color/colorAccent"/>
