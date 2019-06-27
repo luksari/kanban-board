@@ -62,11 +62,13 @@ class BoardFragment : Fragment() {
     private fun setupListeners(){
         val navController = findNavController()
 
-        add_task_button.setOnClickListener {
-            viewModel.addTaskToPage(currentPageName)
-            //then navigate! -> fix
-            navController.navigate(R.id.cardDetailsFragment)
-        }
+//        add_task_button.setOnClickListener {
+////            viewModel.addTaskToPage(currentPageName)
+////        }
+
+        viewModel.isTaskAdded.observe(viewLifecycleOwner, Observer { isTaskAdded ->
+            if(isTaskAdded) navController.navigate(R.id.cardDetailsFragment)
+        })
         viewModel.selectedTaskID.observe(viewLifecycleOwner, Observer {
             navController.navigate(R.id.cardDetailsFragment) })
 

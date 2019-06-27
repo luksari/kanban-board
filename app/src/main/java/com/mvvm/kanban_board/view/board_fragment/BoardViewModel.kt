@@ -2,6 +2,8 @@ package com.mvvm.kanban_board.view.board_fragment
 
 import android.util.Log
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel;
@@ -20,6 +22,10 @@ class BoardViewModel(private val repository: Repository) : ViewModel() {
     private val _loaderVisibility: MutableLiveData<Int> = MutableLiveData(View.GONE)
     val loaderVisibility: LiveData<Int>
         get() = _loaderVisibility
+
+    private val _isTaskAdded: MutableLiveData<Boolean> = MutableLiveData(false)
+    val isTaskAdded: LiveData<Boolean>
+        get() = _isTaskAdded
 
     private var _pageTasks: MutableLiveData<List<TaskResponse>> = MutableLiveData()
     val pageTasks: LiveData<List<TaskResponse>>
@@ -52,15 +58,16 @@ class BoardViewModel(private val repository: Repository) : ViewModel() {
         repository.selectedTaskID.value = taskID
         _selectedTaskID.value = taskID
     }
-    fun addTaskToPage(name: String){
-
-        name?.let{
-            currentPage = name
-            viewModelScope.launch {
-                repository.addTaskToPage(name)
-            }
+    fun addTaskToPage(){
+        viewModelScope.launch {
+                _isTaskAdded.value = false
+                _loaderVisibility.value = VISIBLE
+                repository.addTaskToPage(currentPage!!)
+                _isTaskAdded.value = true
+                _loaderVisibility.value = GONE
         }
     }
+
 
     //need to observe selected task to display card_detail_fragment (cannot setup listeners on non existing buttons)
     private val _selectedTaskID: MutableLiveData<Long> = MutableLiveData()
