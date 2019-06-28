@@ -16,6 +16,7 @@ import com.google.android.material.tabs.TabLayout
 import com.mvvm.kanban_board.R
 import kotlinx.android.synthetic.main.top_bar_with_pages.*
 import org.koin.android.viewmodel.ext.android.viewModel
+import kotlin.system.exitProcess
 
 class TopBarWithPagesFragment : Fragment() {
 
@@ -65,12 +66,10 @@ class TopBarWithPagesFragment : Fragment() {
         val navController = findNavController()
 
         logout_button.setOnClickListener {
-            Log.d("ACTION", "logout")
             viewModel.logout()
             navController.navigate(R.id.signInFragment)
         }
         exit_board_button.setOnClickListener {
-            Log.d("ACTION", "exit")
             viewModel.exitBoard()
             navController.navigate(R.id.enterBoardFragment)
         }

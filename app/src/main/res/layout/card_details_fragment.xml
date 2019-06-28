@@ -76,7 +76,7 @@
                 android:maxLines="10"
                 android:textColorHint="@color/colorAccent"
                 android:gravity="top"
-                android:text="@{viewModel.description}"/>
+                android:text="@={viewModel.description}"/>
             <ImageView
                     android:id="@+id/user_icon"
                     android:layout_width="0dp"
