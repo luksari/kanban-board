@@ -57,7 +57,7 @@
                     android:textColor="@color/colorPrimary"
                     android:lines="2"
                     android:maxLines="2"
-                    android:textColorHint="@color/colorDrawer"
+                    android:textColorHint="@color/colorAccent"
                     android:gravity="top"
                     android:text="@={viewModel.name}"/>
             <EditText
@@ -72,7 +72,7 @@
                 android:textColor="@color/colorPrimary"
                 android:lines="4"
                 android:maxLines="10"
-                android:textColorHint="@color/colorDrawer"
+                android:textColorHint="@color/colorAccent"
                 android:gravity="top"
                 android:text="@{viewModel.description}"/>
             <ImageView
@@ -196,8 +196,8 @@
                         app:lottie_autoPlay="true"
                         app:lottie_loop="true"
                         app:lottie_fileName="loader.json"
-                        android:scaleY="0.4"
-                        android:scaleX="0.4"/>
+                        android:scaleY="0.8"
+                        android:scaleX="0.8"/>
             </LinearLayout>
 
 

@@ -102,8 +102,8 @@
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"
                 app:lottie_fileName="loader.json"
-                android:scaleY="0.4"
-                android:scaleX="0.4"/>
+                android:scaleY="0.8"
+                android:scaleX="0.8"/>
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

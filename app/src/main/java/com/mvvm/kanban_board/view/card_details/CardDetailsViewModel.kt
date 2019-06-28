@@ -91,7 +91,7 @@ class CardDetailsViewModel(private val repository: Repository)  : ViewModel() {
 
     fun deleteTask() {
 
-        repository.currentPage
+        //repository.currentPage
         viewModelScope.launch {
             //first check if was no changes
             _loaderVisibility.value = View.VISIBLE
