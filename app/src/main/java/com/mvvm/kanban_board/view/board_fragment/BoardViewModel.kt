@@ -48,7 +48,9 @@ class BoardViewModel(private val repository: Repository) : ViewModel() {
         page?.let {
             currentPage = page
             viewModelScope.launch {
+                _loaderVisibility.value = VISIBLE
                 _pageTasks.value = repository.loadPageTasks(page)
+                _loaderVisibility.value = GONE
             }
         }
     }

@@ -18,9 +18,18 @@ class TopBarWithPagesViewModel(private val repository: Repository)  : ViewModel(
     fun exitBoard(){
        repository.exitBoard()
     }
-    
+
     fun refresh(){
         //to implement
+    }
+
+    fun getCurrentPageIndex() =
+        when(repository.currentBoardPages.value?.first{p-> p.id == repository.currentTask.value?.page}?.name){
+            "To do" -> 0
+            "In Progress"-> 1
+            "Testing" -> 2
+            "Done" -> 3
+            else -> 0
     }
 
 }

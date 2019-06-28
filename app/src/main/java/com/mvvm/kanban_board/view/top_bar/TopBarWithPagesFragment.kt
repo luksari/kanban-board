@@ -45,6 +45,14 @@ class TopBarWithPagesFragment : Fragment() {
 
         viewPager.adapter = pagesFragmentPagerAdapter
         tabLayout.setupWithViewPager(viewPager)
+
+
+        val selectedPage=  tabLayout.getTabAt(viewModel.getCurrentPageIndex())
+        selectedPage?.select()
+//        val selectedPage=  tabLayout.getTabAt(1)
+//        selectedPage?.select()
+
+
         super.onViewCreated(view, savedInstanceState)
     }
 

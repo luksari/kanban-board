@@ -181,6 +181,26 @@
                 app:layout_constraintStart_toEndOf="@id/guidelineVerTop"
                 app:layout_constraintBottom_toTopOf="@id/guidelineHorBottom">
 
+            <LinearLayout
+                    android:id="@+id/loader"
+                    app:layout_constraintBottom_toTopOf="@id/remove_button"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:visibility="@{safeUnbox(viewModel.loaderVisibility)}">
+
+                <com.airbnb.lottie.LottieAnimationView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_fileName="loader.json"
+                        android:scaleY="0.4"
+                        android:scaleX="0.4"/>
+            </LinearLayout>
+
+
             <Button
                     android:id="@+id/save_button"
                     app:layout_constraintBottom_toTopOf="@id/remove_button"

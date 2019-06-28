@@ -101,7 +101,7 @@
                 android:layout_height="wrap_content"
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"
-                app:lottie_fileName="loader2.json"
+                app:lottie_fileName="loader.json"
                 android:scaleY="0.4"
                 android:scaleX="0.4"/>
         </LinearLayout>

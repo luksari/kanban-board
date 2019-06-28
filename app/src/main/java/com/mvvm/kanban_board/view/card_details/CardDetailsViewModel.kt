@@ -1,5 +1,6 @@
 package com.mvvm.kanban_board.view.card_details
 
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel;
@@ -30,6 +31,10 @@ class CardDetailsViewModel(private val repository: Repository)  : ViewModel() {
     private val _author = MutableLiveData<String>()
     val author: LiveData<String>
         get() = _author
+
+    private val _loaderVisibility: MutableLiveData<Int> = MutableLiveData(View.GONE)
+    val loaderVisibility: LiveData<Int>
+        get() = _loaderVisibility
 
     init {
         repository.currentTask.observeForever {
@@ -77,7 +82,9 @@ class CardDetailsViewModel(private val repository: Repository)  : ViewModel() {
         description.value = _currentTask?.description
         viewModelScope.launch {
             //great api
+            _loaderVisibility.value = View.VISIBLE
             _author.value = repository.loadUser(_currentTask?.user)?.username
+            _loaderVisibility.value = View.GONE
         }
     }
 
@@ -87,12 +94,16 @@ class CardDetailsViewModel(private val repository: Repository)  : ViewModel() {
         repository.currentPage
         viewModelScope.launch {
             //first check if was no changes
+            _loaderVisibility.value = View.VISIBLE
             repository.deleteSelectedTask()
+            _loaderVisibility.value = View.GONE
+
         }
     }
 
     fun editTask() {
         viewModelScope.launch {
+            _loaderVisibility.value = View.VISIBLE
             //update without changing if was changes, too complicated for now with page change
             val editedTask = _currentTask
             editedTask?.let {
@@ -105,6 +116,8 @@ class CardDetailsViewModel(private val repository: Repository)  : ViewModel() {
                 }
                 repository.editTask(it)
             }
+            _loaderVisibility.value = View.GONE
+
         }
     }
 }
